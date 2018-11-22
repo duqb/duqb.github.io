@@ -1,0 +1,1 @@
+Migrate the blog to github: http://duqingbin.com
