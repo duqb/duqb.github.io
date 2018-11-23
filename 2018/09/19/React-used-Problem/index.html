@@ -1,0 +1,768 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next mist use-motion" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css" />
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/favicon.ico?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon.ico?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon.ico?v=5.1.4">
+
+
+  <link rel="mask-icon" href="/images/favicon.ico?v=5.1.4" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="JavaScript,React," />
+
+
+
+
+
+
+
+
+
+
+<meta name="description" content="1.React组件划分按职责划分: UI组件负责UI的呈现，容器组件负责管理数据和逻辑。UI组件嵌套在容器组件中，容器组件通过React-redux提供的connect方法拿到store中的数据。组件设计原则:1.高内聚低耦合（组件自身不依赖于其他组件，抽象可复用组件让使用者之间没有耦合关系）2.周期性迭代（先整体后部分再颗粒化，尽可能抽象）数据管理原则:1.能计算得到状态就不要单独存储。2.组件">
+<meta name="keywords" content="JavaScript,React">
+<meta property="og:type" content="article">
+<meta property="og:title" content="React常见问题">
+<meta property="og:url" content="http://duqingbin.com/2018/09/19/React-used-Problem/index.html">
+<meta property="og:site_name" content="Jack&#39;s Blog">
+<meta property="og:description" content="1.React组件划分按职责划分: UI组件负责UI的呈现，容器组件负责管理数据和逻辑。UI组件嵌套在容器组件中，容器组件通过React-redux提供的connect方法拿到store中的数据。组件设计原则:1.高内聚低耦合（组件自身不依赖于其他组件，抽象可复用组件让使用者之间没有耦合关系）2.周期性迭代（先整体后部分再颗粒化，尽可能抽象）数据管理原则:1.能计算得到状态就不要单独存储。2.组件">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:updated_time" content="2018-11-23T05:55:30.524Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="React常见问题">
+<meta name="twitter:description" content="1.React组件划分按职责划分: UI组件负责UI的呈现，容器组件负责管理数据和逻辑。UI组件嵌套在容器组件中，容器组件通过React-redux提供的connect方法拿到store中的数据。组件设计原则:1.高内聚低耦合（组件自身不依赖于其他组件，抽象可复用组件让使用者之间没有耦合关系）2.周期性迭代（先整体后部分再颗粒化，尽可能抽象）数据管理原则:1.能计算得到状态就不要单独存储。2.组件">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Mist',
+    version: '5.1.4',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://duqingbin.com/2018/09/19/React-used-Problem/"/>
+
+
+
+
+
+  <title>React常见问题 | Jack's Blog</title>
+  
+
+
+
+
+
+  <script type="text/javascript">
+    var _hmt = _hmt || [];
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "https://hm.baidu.com/hm.js?cfe2c158cc65ec08529daef2db316005";
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+  </script>
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">Jack's Blog</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle">Technology Blog</p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
+            
+            关于
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://duqingbin.com/2018/09/19/React-used-Problem/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Jack Du">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/my_avatar.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Jack's Blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">React常见问题</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-09-19T20:35:03+08:00">
+                2018-09-19
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/前端/" itemprop="url" rel="index">
+                    <span itemprop="name">前端</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h3 id="1-React组件划分"><a href="#1-React组件划分" class="headerlink" title="1.React组件划分"></a>1.React组件划分</h3><p>按职责划分: UI组件负责UI的呈现，容器组件负责管理数据和逻辑。UI组件嵌套在容器组件中，容器组件通过React-redux提供的connect方法拿到store中的数据。<br>组件设计原则:<br>1.高内聚低耦合（组件自身不依赖于其他组件，抽象可复用组件让使用者之间没有耦合关系）<br>2.周期性迭代（先整体后部分再颗粒化，尽可能抽象）<br>数据管理原则:<br>1.能计算得到状态就不要单独存储。<br>2.组件尽量没有状态，所需数据通过props获取。<br>具体使用可以参照如下链接:<br><a href="http://www.ruanyifeng.com/blog/2016/09/redux_tutorial_part_three_react-redux.html" target="_blank" rel="noopener">http://www.ruanyifeng.com/blog/2016/09/redux_tutorial_part_three_react-redux.html</a></p>
+<h3 id="2-React组件的生命周期"><a href="#2-React组件的生命周期" class="headerlink" title="2.React组件的生命周期"></a>2.React组件的生命周期</h3><p>Render阶段（暂停），Pre-commit阶段（可读），commit阶段（可用）<br>1.创建时:<br>constructor: 组件更新到页面前先创建出来<br>getDefaultProps: 获取实例的默认属性 (old)<br>getInitialState: 获取每个实例的初始化状态（old）<br>componentWillMount: 组件即将被装载、渲染到页面上<br>render: 组件在这里生成虚拟的DOM节点<br>componentDidMount: 组件真正在被装载之后可操作了（ajax等）<br>2.更新时:<br>getDerivedStateFromProps: 用外部的属性初始化一些内部的状态（16.3引入）<br>componentWillReceiveProps: 组件将要接收到属性的时候调用 （16.3被取代）<br>shouldComponentUpdate: 组件接受到新属性或者新状态的时候（可以返回false，接收数据后不更新，阻止render调用，后面的函数不会被继续执行了，可用于性能优化）<br>componentWillUpdate: 组件即将更新不能修改属性和状态<br>render: 组件重新描绘<br>getSnapshotBeforeUpdate: 例如获取滚动条滚动高度再减去,不动的效果（16.3引入）<br>componentDidUpdate: 组件已经更新<br>3.卸载时:<br>componentWillUnmount:组件即将销毁</p>
+<h3 id="3-React性能优化方案"><a href="#3-React性能优化方案" class="headerlink" title="3.React性能优化方案"></a>3.React性能优化方案</h3><p>1.使用production版本<br>2.使用key来帮助React识别列表中所有子组件的最小变化。<br>3.重写shouldComponentUpdate来避免不必要的dom操作。(判断是否需要调用render方法重新描绘dom)<br>参考链接：<a href="https://segmentfault.com/a/1190000006254212" target="_blank" rel="noopener">https://segmentfault.com/a/1190000006254212</a></p>
+<h3 id="4-理解diff算法"><a href="#4-理解diff算法" class="headerlink" title="4.理解diff算法"></a>4.理解diff算法</h3><p>把树形结构按照层级分解，只比较同级元素。<br>给列表结构的每个单元添加唯一的key属性，方便比较。<br>React只会匹配相同tag class的component（这里面的class指的是组件的名字）<br>合并操作，调用component的setState方法的时候, React将其标记为dirty.到每一个事件循环结束,React检查所有标记dirty的component重新绘制。<br>选择性子树渲染。开发人员可以重写shouldComponentUpdate提高diff的性能。<br>参考链接：<a href="https://segmentfault.com/a/1190000000606216" target="_blank" rel="noopener">https://segmentfault.com/a/1190000000606216</a></p>
+<h3 id="5-虚拟dom如何提高性能"><a href="#5-虚拟dom如何提高性能" class="headerlink" title="5.虚拟dom如何提高性能"></a>5.虚拟dom如何提高性能</h3><p>虚拟dom相当于在js和真实dom中间加了一个缓存，利用diff算法避免了没有必要的dom操作，从而提高性能。<br>步骤：<br>1.用对象结构表示DOM树的结构,然后用这个树构建一个真正的DOM树，插到文档当中。<br>2.当状态变更时，重新构造一棵新的对象树。用新的树和旧的树进行比较，记录两棵树差异。<br>3.把记录的差异应用到最开始构建的真正的DOM树上，视图就更新了。<br>参考链接：<a href="https://www.zhihu.com/question/29504639?sort=created" target="_blank" rel="noopener">https://www.zhihu.com/question/29504639?sort=created</a></p>
+<h3 id="6-flux工作流程"><a href="#6-flux工作流程" class="headerlink" title="6.flux工作流程"></a>6.flux工作流程</h3><p>最大特点:”单向数据流”。<br>1.用户访问View<br>2.View发出用户的Action<br>3.Dispatcher收到Action，要求Store进行相应的更新<br>4.Store更新后，发出一个”change”事件<br>5.View 收到”change”事件后，更新页面<br>参考链接：<a href="http://www.ruanyifeng.com/blog/2016/01/flux.html" target="_blank" rel="noopener">http://www.ruanyifeng.com/blog/2016/01/flux.html</a></p>
+<h3 id="7-redux中间件"><a href="#7-redux中间件" class="headerlink" title="7.redux中间件"></a>7.redux中间件</h3><p>中间件提供第三方插件的模式，自定义拦截 action -&gt; reducer 的过程。<br>变为 action -&gt; middlewares -&gt; reducer 。<br>这种机制可以让我们改变数据流，实现如异步 action ，action 过滤，日志输出，异常报告等功能。<br>常见的中间件：<br>redux-logger：提供日志输出<br>redux-thunk：处理异步操作<br>redux-promise：处理异步操作，actionCreator的返回值是promise</p>
+<h3 id="8-redux有什么缺点"><a href="#8-redux有什么缺点" class="headerlink" title="8.redux有什么缺点"></a>8.redux有什么缺点</h3><p>1.一个组件所需要的数据，必须由父组件传过来，而不能像flux中直接从store取。<br>2.当一个组件相关数据更新时，即使父组件不需要用到这个组件，父组件还是会重新render，可能会有效率影响，或者需要写复杂的shouldComponentUpdate进行判断。</p>
+<h3 id="9-React项目中的脚手架"><a href="#9-React项目中的脚手架" class="headerlink" title="9.React项目中的脚手架"></a>9.React项目中的脚手架</h3><p>Mern：MERN是脚手架的工具，它可以很容易地使用MongoDB, Express, React and NodeJS生成同构JS应用。它最大限度地减少安装时间，并得到您使用的成熟技术来加速开发。<br>参考链接：<a href="http://www.open-open.com/lib/view/open1455953055292.html" target="_blank" rel="noopener">http://www.open-open.com/lib/view/open1455953055292.html</a></p>
+<h3 id="11-在React当中Element和Component的区别？"><a href="#11-在React当中Element和Component的区别？" class="headerlink" title="11.在React当中Element和Component的区别？"></a>11.在React当中Element和Component的区别？</h3><p>简单地说，一个React Element描述了你想在屏幕上看到什么。换个说法就是，一个React Element是一些UI的对象表示。一个Read component是一个函数或一个类，它可以接受输入并返回一个React Element （通常是通过JSX，它被转化成一个createElement调用）。 </p>
+<h3 id="12-可以选择性地传递给setstate的第二个参数是什么，它的目的是什么？"><a href="#12-可以选择性地传递给setstate的第二个参数是什么，它的目的是什么？" class="headerlink" title="12.可以选择性地传递给setstate的第二个参数是什么，它的目的是什么？"></a>12.可以选择性地传递给setstate的第二个参数是什么，它的目的是什么？</h3><p>一个回调函数，当setstate结束并re-rendered该组件时将被调用。一些没有说出来的东西是 setstate是异步的，这就是为什么它需要一个第二个回调函数。通常最好使用另一个生命周期方法，而不是依赖这个回调函数，但是很高兴知道它存在。<br><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">this</span>.setstate( </span><br><span class="line">    &#123; <span class="attr">username</span> : <span class="string">'tylermcginnis33'</span> &#125; ,</span><br><span class="line">    ()=&gt; <span class="built_in">console</span>.log (<span class="string">'setstate has flnlshed and the component re-rende red.'</span>)</span><br><span class="line">    )</span><br></pre></td></tr></table></figure></p>
+<p>这段代码有什么问题？</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">this</span>.setstate ( ( prevstate , props ）=&gt; &#123; </span><br><span class="line"><span class="keyword">return</span> &#123;</span><br><span class="line">   Streak : prevstate.Streak + props.count</span><br><span class="line">   &#125;</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
+<p>没问题。只是这种写法很少被使用，你也可以传递一个函数给setstate ，它接收到先前的状态和道具并返回一个新的状态，它不仅没有什么问题，而且如果您根据以前的状态（ state ）设置状态，推荐使用这种写法。</p>
+<h3 id="13-为什么要使React-children-map-props-children-gt-而不是props-children-map-gt"><a href="#13-为什么要使React-children-map-props-children-gt-而不是props-children-map-gt" class="headerlink" title="13.为什么要使React.children.map(props.children,()=&gt;)而不是props.children.map(()=&gt;)"></a>13.为什么要使React.children.map(props.children,()=&gt;)而不是props.children.map(()=&gt;)</h3><p>因为不能保证props.children将是一个数组．<br>以此代码为例,<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">&lt;Parent&gt;</span><br><span class="line">    &lt;h1＞Welcome.&lt;/h1&gt;</span><br><span class="line">&lt;/Parent&gt;</span><br></pre></td></tr></table></figure></p>
+<p>在父组件内部，如果我们尝试使用props.children.map映射孩子，则会抛出错误，因为props.children是一个对象，而不是一个数组。<br>如果有多个子元素React只会使props.children成为一个数组。就像下面这样：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">&lt;Parent&gt;</span><br><span class="line">    &lt;h1＞Welcome.&lt;/h1&gt;</span><br><span class="line">    &lt;h2&gt;props.children will now be an array&lt;/h2&gt;</span><br><span class="line">&lt;/Parent&gt;</span><br></pre></td></tr></table></figure></p>
+<p>这就是为什么你喜欢React.children.map,因为它的实现考虑到props.children可能是一个数组或一个对象。</p>
+
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/JavaScript/" rel="tag"># JavaScript</a>
+          
+            <a href="/tags/React/" rel="tag"># React</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2018/08/25/GitFlow-work/" rel="next" title="GitFlow协同工作流">
+                <i class="fa fa-chevron-left"></i> GitFlow协同工作流
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2018/09/20/Hexo-used-problem/" rel="prev" title="Hexo中遇到的问题">
+                Hexo中遇到的问题 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image"
+                src="/images/my_avatar.jpg"
+                alt="Jack Du" />
+            
+              <p class="site-author-name" itemprop="name">Jack Du</p>
+              <p class="site-description motion-element" itemprop="description">Stay hungry, Stay foolish</p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives/">
+              
+                  <span class="site-state-item-count">20</span>
+                  <span class="site-state-item-name">日志</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-categories">
+                <a href="/categories/index.html">
+                  <span class="site-state-item-count">8</span>
+                  <span class="site-state-item-name">分类</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                <a href="/tags/index.html">
+                  <span class="site-state-item-count">34</span>
+                  <span class="site-state-item-name">标签</span>
+                </a>
+              </div>
+            
+
+          </nav>
+
+          
+
+          
+            <div class="links-of-author motion-element">
+                
+                  <span class="links-of-author-item">
+                    <a href="https://github.com/duqb" target="_blank" title="GitHub">
+                      
+                        <i class="fa fa-fw fa-github"></i>GitHub</a>
+                  </span>
+                
+            </div>
+          
+
+          
+          
+
+          
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#1-React组件划分"><span class="nav-number">1.</span> <span class="nav-text">1.React组件划分</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-React组件的生命周期"><span class="nav-number">2.</span> <span class="nav-text">2.React组件的生命周期</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3-React性能优化方案"><span class="nav-number">3.</span> <span class="nav-text">3.React性能优化方案</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#4-理解diff算法"><span class="nav-number">4.</span> <span class="nav-text">4.理解diff算法</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#5-虚拟dom如何提高性能"><span class="nav-number">5.</span> <span class="nav-text">5.虚拟dom如何提高性能</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#6-flux工作流程"><span class="nav-number">6.</span> <span class="nav-text">6.flux工作流程</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#7-redux中间件"><span class="nav-number">7.</span> <span class="nav-text">7.redux中间件</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#8-redux有什么缺点"><span class="nav-number">8.</span> <span class="nav-text">8.redux有什么缺点</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#9-React项目中的脚手架"><span class="nav-number">9.</span> <span class="nav-text">9.React项目中的脚手架</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#11-在React当中Element和Component的区别？"><span class="nav-number">10.</span> <span class="nav-text">11.在React当中Element和Component的区别？</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#12-可以选择性地传递给setstate的第二个参数是什么，它的目的是什么？"><span class="nav-number">11.</span> <span class="nav-text">12.可以选择性地传递给setstate的第二个参数是什么，它的目的是什么？</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#13-为什么要使React-children-map-props-children-gt-而不是props-children-map-gt"><span class="nav-number">12.</span> <span class="nav-text">13.为什么要使React.children.map(props.children,()=&gt;)而不是props.children.map(()=&gt;)</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2018</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Jack Du</span>
+
+  
+</div>
+
+
+  <div class="powered-by">由 <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a> 强力驱动</div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">主题 &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Mist</a> v5.1.4</div>
+
+
+
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.4"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>
