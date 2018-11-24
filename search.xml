@@ -57,7 +57,7 @@
       <link href="/2018/09/20/Hexo-used-problem/"/>
       <url>/2018/09/20/Hexo-used-problem/</url>
       
-        <content type="html"><![CDATA[<h4 id="1-文件无法删除"><a href="#1-文件无法删除" class="headerlink" title="1.文件无法删除"></a>1.文件无法删除</h4><p>不要直接修改文件名的大小写，否则会造成文件经删除(public与source都没有了)，但浏览博客中依然会显示的情况。</p><p>解决方法：重建一个原文件，注意文件名大小写一定要相同，然后再删除一次就可以了。</p><p>hexo clean<br>hexo g -d</p><h4 id="2-分类数与标签数显示不正确"><a href="#2-分类数与标签数显示不正确" class="headerlink" title="2.分类数与标签数显示不正确"></a>2.分类数与标签数显示不正确</h4><p>参考:<br><a href="https://theme-next.iissnan.com/faqs.html" target="_blank" rel="noopener">https://theme-next.iissnan.com/faqs.html</a></p>]]></content>
+        <content type="html"><![CDATA[<h4 id="1-文件无法删除"><a href="#1-文件无法删除" class="headerlink" title="1.文件无法删除"></a>1.文件无法删除</h4><p>不要直接修改文件名的大小写，否则会造成文件已经删除(public与source都没有了)，但浏览博客中依然会显示的情况。</p><p>解决方法：重建一个原文件，注意文件名大小写一定要相同，然后再删除一次就可以了。</p><p>hexo clean<br>hexo g -d</p><h4 id="2-分类数与标签数显示不正确"><a href="#2-分类数与标签数显示不正确" class="headerlink" title="2.分类数与标签数显示不正确"></a>2.分类数与标签数显示不正确</h4><p>参考:<br><a href="https://theme-next.iissnan.com/faqs.html" target="_blank" rel="noopener">https://theme-next.iissnan.com/faqs.html</a></p>]]></content>
       
       
       
@@ -102,6 +102,12 @@
         <content type="html"><![CDATA[<p>在真实的生产过程中，中心式协同工作流与功能分支协同工作流，还不能满足工作的要求。<br>这主要因为软件生产中会有各式各样的问题，并要面对不同的环境。我们要在不停地开发新代码的同时，维护线上的代码，于是，就有了下面这些需求。</p><ol><li>希望有一个干净的分支，上面是可以发布的代码，上面的改动永远都是可以发布到生产环境中的。这个分支上不能有中间开发过程中不可以上生产线的代码提交。</li><li>希望当代码达到可以上线的状态时，也就是在 alpha/beta release 时，在测试和交付的过程中，依然可以开发下一个版本的代码。</li><li>对于已经发布的代码，也会有一些 Bug-fix 的改动，不会将正在开发的代码提交到生产线上去。</li></ol><p>面对这些需求，前面的协同方式就不行了。因为我们不仅是要在整个团队中共享代码，更要管理好代码与环境的一致性。</p><p>为了解决这些问题，GitFlow 协同工作流就出来了。</p><p>GitFlow 协同工作流是由 Vincent Driessen 于 2010 年在 A successful Git branching model 这篇文章介绍给世人的。</p><p>这个协同工作流的核心思想如下图所示。<br><img src="/images/9cf4c9bc17bf11aa07d47f61d2137fca.png" alt="9cf4c9bc17bf11aa07d47f61d2137fca.png"></p><p>整个代码库中一共有五种分支。</p><ul><li>Master 主干分支，用作发布环境，上面的每一次提交都是可以发布的。</li><li>Feature 功能分支，用于开发功能，其对应的是开发环境。</li><li>Developer 开发分支，一旦功能开发完成，就向 Developer 分支合并，合并完成后，删除功能分支。这个分支对应的是集成测试环境。</li><li>Release 当 Developer 分支测试达到可以发布状态时，开出一个 Release 分支来，然后做发布前的准备工作。这个分支对应的是预发环境。之所以需要这个 Release 分支，是我们的开发可以继续向前，不会因为要发布而被 block 住而不能提交。</li><li>一旦 Release 分支上的代码达到可以上线的状态，那么需要把 Release 分支向 Master 分支和 Developer 分支同时合并，以保证代码的一致性。然后再把 Release 分支删除掉。</li><li>Hotfix 是用于处理生产线上代码的 Bug-fix，每个线上代码的 Bug-fix 都需要开一个 Hotfix 分支，完成后，向 Developer 分支和 Master 分支上合并。合并完成后，删除 Hotfix 分支。</li></ul><p>通过整个 GitFlow 协同工作流程可以看到：</p><ol><li>要长期维护 Master 和 Developer 两个分支。</li><li>这种方式还是有一定复杂度的，尤其是 Release 和 Hotfix 分支需要同时向两个分支作合并。所以，如果没有一个好的工具来支撑的话，这会因为我们可能会忘了做一些操作而导致代码不一致。</li><li>GitFlow 协同虽然工作流比较重。但是它几乎可以应对所有公司的各种开发流程，包括瀑布模型，或是快速迭代模型。</li></ol><p>之后有不需要维护多个版本，也不需要关注不同的运行环境，只需要一套代码，就可以了。GitHub Flow/Gitlab Flow 或是功能分支这种方式也更适应这种开发方式也更适应这种开发。</p><p>参考：<br>Git协同工作流，你该怎样选</p>]]></content>
       
       
+      <categories>
+          
+          <category> 管理 </category>
+          
+      </categories>
+      
       
         <tags>
             
@@ -135,6 +141,12 @@
       
         <content type="html"><![CDATA[<h5 id="关于时间："><a href="#关于时间：" class="headerlink" title="关于时间："></a>关于时间：</h5><p><strong>1.进程切换非常昂贵，避免多任务，保持单进程。</strong>（不要同时做多件事，结果可能都没做好，还拖长了工作时间。多任务状态会花费更多的时间。）</p><p><strong>2.研究表明，集中注意力、高效工作，每天最多4小时。</strong>（个人能够集中注意力的时间，是有限的。一般来说，高效工作只能持续四个小时，其余时间就都是低效工作了。）</p><p><strong>3.划分任务的优先级，不要把’急切’当作’重要’。</strong>（你的时间有限，不可能做所有事。最重要的事，应该首先做。一个有用的技巧是，将所有任务按照”重要性”和”紧急性”两个维度，分成四个象限。第一象限优先级最高，第四象限最低。）</p><p><strong>4.起床后，不要查看邮件和微信。</strong>（早晨精力最充沛，消耗在邮件和微信就太可惜了，应该用来做更重要的事。而且，邮件代表对别人优先级高，不等于对你优先级高。你的时间到底属于谁？你自己，还是某个给你写信的人）</p><p><strong>5.避免开会，因为人类已知的最浪费时间的事情，就是开会。</strong>（越大的公司，越无法避免开会。但至少不要参加与你无关的会。站着开会，也许是一个缩短会议时间的好办法。）</p><p><strong>6.早晨4点起床，到了中午，你就完成了一天的任务。</strong>（早晨4点起床开始工作，你会发现每天的时间多出了好多。有个日本人写了一本书《四点起床》，就是讲这个观点。）</p><p><strong>7.你没空时不会做的事情，有空了也不会做。</strong>（世上并没有拖延症，只是不想做而已。如果可能，应该尽早放弃你没有意愿去做的那些事。而那些没有时间也会去做的事，才是你应该全力以赴的人生方向。）</p><h5 id="关于效率："><a href="#关于效率：" class="headerlink" title="关于效率："></a>关于效率：</h5><p>1.效率低，往往是因为不专注，要求自己每件事都要有时间点和完成里程碑。</p><p>2.哪怕一个很大的工程，当你切成五十段之后，面临的第一个任务也无非是挖一个大坑。</p><p>3.想清楚重要性，比着急出发更重要，如果每天只做三件事，那该做哪三件事。</p><p>4.在错误的道路上跑的越快越没救，不走弯路才是效率高的体现，不是走得快。</p><p>5.一切以结果为导向，每次都激励自己赶紧忙完这一段，就可以接着忙下一段了。</p><p>参考：<br><a href="http://www.ruanyifeng.com/blog/2011/01/never_check_email_first_thing_in_the_morning.html" target="_blank" rel="noopener">http://www.ruanyifeng.com/blog/2011/01/never_check_email_first_thing_in_the_morning.html</a><br><a href="http://www.ruanyifeng.com/blog/2009/01/stuff_that_matters.html" target="_blank" rel="noopener">http://www.ruanyifeng.com/blog/2009/01/stuff_that_matters.html</a></p>]]></content>
       
+      
+      <categories>
+          
+          <category> 管理 </category>
+          
+      </categories>
       
       
         <tags>
@@ -205,6 +217,12 @@
         <content type="html"><![CDATA[<p><strong><em> 该笔记于201707QCon大会记录@ChenHao的演讲。</em></strong></p><p>如果创建一家相同的公司，那还不如直接加入别人好了。既然创业条件本来就不好走，那就让它变得有趣些吧。</p><p>与众不同</p><p>不定时休假工作制，想休假就休假。<br>没有审批，休假、报销、出差等自己审批自己。<br>工作设备，定期集体设备升级。<br>没有升职，每个人即是最高层也是一线员工。<br>信息完全平等，所有人都知道所用信息。<br>英文，所有 文档、代码必须英文。<br>远程工作，支持边旅游边工作，工作时间和地点不限。<br>激进和高标准，对于工作要担心的不是激进而是不激进。</p><p>远程团队需要相信工程师，自我管理，自我驱动是最好的驱动力，用人不疑，疑人不用。自由是创造力的源泉，没有束缚才能飞得更高，想象力和创造力源自无拘无束，自由是进步的象征，参照开源软件，远程有问题，那么开源软件一定有问题如果你相信开源软件，那么你其实是在相信远程工作方式。</p><p>相关问题</p><p>沟通变得很复杂。见不到面，讲不清楚，沟通实际比较长，每个人的到的信息不完善。<br>开发速度变慢。开发速度变慢，部分工作出现拖延，每天工作时间控制不住。<br>生活和工作混淆。在家工作导致工作和生活分不清楚，生活和工作相互打扰，相互影响。<br>因为没有办公室，团队成员亲人以为你加入了一个骗子公司。</p><p>效率问题</p><p>效率=有用功/总功。提高效率应该如何做：<br>想清楚再干，学会抓重点，崇尚简化和自动化，正确的组件抽象，提高代码重用，避免无效率的组织架构和无效率的管理，开发高质量的产品，不断提高标准，创建一个持续改善的文化。</p><p>软件团队的两种管理方式</p><p>Widget Factory (小商品工厂模式)：</p><ul><li>一般人的本性是懒惰的，工作越少越好，可能的话会逃避工作，大部分人对集体（公司，机构，单位，组织等）的目标不关心，因此管理者需要以强迫威胁处罚，指导，金钱利益等诱因激发人们的工作原动力。</li><li>公司对实实在在的软件开发漠不关心，他们想要把理想中的软件开发运作变成他们看得见的图表。</li><li>流程很重，不是单元和人员很多。</li></ul><p>Film Crews（电影工作组）：</p><ul><li>这种公司认为人是有相当高的智力和创造力的,是可以激发自己的。</li><li>每一个个体的自己专业能力,要远远优于那种被组织协调出来的能力。人们努力工作并可以享受工作。</li><li>工作职责变得非常的垂直，你需要具有从上到下的比较宽泛的各种能力。</li><li>经历了解把一个伟大的软件组合起来的每一个碎片。他的决策是鼓舞大家，守护着方向。</li><li>团队里的每个人都很关键，因为团队相信软件的结果来自所有参与者以及他们的那种独一无二的团队工作方式。</li></ul><p>分布式远程团队</p><p>有能力的人。多面手、一专多能的人，有想法有能力的人，能自我驱动，标准高的人。<br>小而精的团队。团队人数不能多，8-10个左右，学会抓重点，使用智力不用蛮力，用重用和自动化解决人手不够的问题。<br>相同的目标和信条。相同的使命感和目标，对产品和设计有相同的理念和信条，相同的Owership和Leadership。</p><p>远程工作协议v1.0</p><ul><li>Online: 工作的时候必须在线，如果不在线，需要说一下不在线的时长。</li><li>3PS Update: 每周工作更新。Plan,Proirity,Problem,Summary。</li><li>Ownership&amp; Leadership: 如果看到团队是项目有问题的时候，不要等，也不忍，马上说出来，并给出响应的方案，自己跳出来召集开会，及时调整。不要闷在那里，自己憋。</li><li>1-2-3 Escalation:遇到问题的时候，自己一个人处理1小时内没思路，找他人小范围讨论，如果与他人2小时内没有结果，请上升到团队范围，如果在团队范围3小时内没思路，我们就需要借助外部力量了。</li><li>Design Review:对于一些重要的问题或工作，需要先把自己的想法share出来，而不是先实现。</li><li>Milestone Commitment:最好是2周以内，1周内更好。而且要承诺到。</li><li>Initiative:每个人都必须是主动的，都必须要自己发起要做的事，或是自己要认领要做的事。</li></ul><p>远程工作相关实践</p><p>Github: git实践，Issue,Pull Request,Code Review,Wiki<br>Dame Day: 演示产品，分享知识，交流心得，接收意见，改进产品<br>Document: 只准用英文，写文档等于写代码，设计文档必须有引用，必写READM<br>Async-Pair: 异步结对编程，第一个人写完另一个人修改，互相维护，交叉开发<br>Automation: 单元测试，Sanity Test,自动化部署，DevOps,开发工具<br>Rethinking: 每季计划，项目回顾，互相挑战，自我批评，反思总结</p><p>工作计划：季度聚会和季度计划，周计划（每周没人只干一件事）<br>私聊：1v1私聊（至少每月一次），想法、痛苦、趣事、忧伤…<br>Ownership: 有一个Owner推动整体项目，自己解决问题（即使是别人）<br>个人提高: 每人每年1个月的学习充电期，相互要求为自己讲解疑惑</p><p>远程工具</p><p>开发写作Github<br>屏幕共享TeamViewer<br>文件分析Dropbox<br>语音群聊WeChat<br>日常消息Slack<br>开发环境AWS</p><p>IMPOSSIBLE IS NOTHING,至少我敢想，我敢干！</p>]]></content>
       
       
+      <categories>
+          
+          <category> 管理 </category>
+          
+      </categories>
+      
       
         <tags>
             
@@ -244,6 +262,12 @@
       
         <content type="html"><![CDATA[<h4 id="1-简介"><a href="#1-简介" class="headerlink" title="1.简介"></a>1.简介</h4><p>跨域资源共享（CORS），允许浏览器向跨域服务器发出XMLHttpRequest或Fetch请求，避免了浏览器同源策略的限制。CORS需要浏览器和服务器同时支持。目前除了IE10以下的浏览器都已支持。<br>浏览器发现请求跨域，就会自动添加一些附加的头信息，有时还会多出一次附加的请求，实现CORS通信的关键是服务器。<br>CORS请求分成：简单请求（simple request）和预检请求（Preflighted requests）。</p><p>满足下面条件就属于简单请求：<br>1.请求方法是这3种之一： HEAD， GET， POST<br>2.HTTP的头信息不超出以下字段：</p><ul><li>Accept</li><li>Accept-Language</li><li>Content-Language</li><li>Last-Event-ID</li><li>Content-Type（只限于3个值：application/x-www-form-urlencoded、multipart/form-data、text/plain）</li><li>详细 Fetch 规范</li></ul><p>3.请求中的任意XMLHttpRequestUpload 对象均没有注册任何事件监听器；XMLHttpRequestUpload 对象可以使用 XMLHttpRequest.upload 属性访问。<br>4.请求中没有使用 ReadableStream 对象。</p><h4 id="2-简单请求"><a href="#2-简单请求" class="headerlink" title="2.简单请求"></a>2.简单请求</h4><p>浏览器发现简单请求，就在头信息中添加一个Origin字段（协议 + 域名 + 端口）。服务器根据这个值，决定是否同意这次请求。</p><p>服务器不同意：返回正常http响应，头信息没有Access-Control-Allow-Origin字段，抛出错误被onerror捕获，注意这里的状态码可能是200。</p><p>服务器同意：返回响应头信息多出几个字段：</p><ol><li>Access-Control-Allow-Origin(必选)：Origin的值或* 。</li><li>Access-Control-Allow-Credentials（可选）：布尔值，是否允许发送Cookie。</li><li>Access-Control-Expose-Headers（可选）：XMLHttpRequest对象的getResponseHeader()方法只能拿到6个基本字段，要拿其他字段需要在这指定。</li></ol><p>withCredentials 属性：要发送Cookie,Credentials设为true,AJAX中打开withCredentials属性,Origin不用 * 号，用具体同源信息。</p><h4 id="3-预检请求"><a href="#3-预检请求" class="headerlink" title="3.预检请求"></a>3.预检请求</h4><p>预检请求：先增加一次查询请求（查许可名单）。应对请求方法是PUT或DELETE或者Content-Type字段的类型是application/json。</p><p>预检请求方法：OPTIONS（用来询问），<br>包含Origin字段，<br>包含 Access-Control-Request-Method：用到哪些HTTP方法，<br>包含 Access-Control-Request-Headers：额外发送的头信息字段。</p><p>预检请求的响应：检查上述字段，确认是否允许，<br>浏览器否定了预检请求，抛出错误。（XXX is not allowed by XXX Origin）</p><p>其他CORS相关字段：</p><ol><li>Access-Control-Allow-Methods(必须): 所有支持的方法。</li><li>Access-Control-Allow-Headers（必须）:支持的所有头信息字段。</li><li>Access-Control-Allow-Credentials: true（与简单请求含义相同）。</li><li>Access-Control-Max-Age: 预检请求的有效期（秒），此期间，不用发出另一条预检请求。</li></ol><p>预检通过后，每次CORS与正常请求相同了。请求中Origin字段是浏览器自动添加的。<br>响应中Access-Control-Allow-Origin字段每次必须包含。</p><h4 id="4-对比JSONP"><a href="#4-对比JSONP" class="headerlink" title="4.对比JSONP"></a>4.对比JSONP</h4><p>都是跨域。JSONP只支持GET请求，支持老浏览器，可向没设置CORS的网站请求数据。CORS支持所有类型的HTTP请求。</p><p>其他：通过document.domain跨域，通过location.hash跨域，通过HTML5的postMessage方法跨域，通过window.name跨域。（中间件跨域，服务器代理跨域，Flash URLLoader跨域，动态创建script标签（简化版本的jsonp））。</p><p>注意：某些版本的Android浏览器中，因为缓存的原因，第一次进行跨域请求是正常的，但是第二次进行的时候则会失效，对于这个问题，可以通过在Header中增加Cache-Control: no-cache 阻止缓存的方式来解决这个问题。</p><p>参考：<br><a href="http://stackoverflow.com/questions/1652850/android-webview-cookie-problem" target="_blank" rel="noopener">http://stackoverflow.com/questions/1652850/android-webview-cookie-problem</a><br><a href="https://developer.mozilla.org/en/docs/Web/HTTP/Access_control_CORS" target="_blank" rel="noopener">https://developer.mozilla.org/en/docs/Web/HTTP/Access_control_CORS</a><br><a href="http://www.ruanyifeng.com/blog/2016/04/cors.html" target="_blank" rel="noopener">http://www.ruanyifeng.com/blog/2016/04/cors.html</a></p>]]></content>
       
+      
+      <categories>
+          
+          <category> 前端 </category>
+          
+      </categories>
       
       
         <tags>
