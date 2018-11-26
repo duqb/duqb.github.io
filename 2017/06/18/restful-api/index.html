@@ -68,7 +68,7 @@
 
 
 
-  <meta name="keywords" content="Git," />
+  <meta name="keywords" content="HTTP," />
 
 
 
@@ -79,20 +79,18 @@
 
 
 
-<meta name="description" content="在真实的生产过程中，中心式协同工作流与功能分支协同工作流，还不能满足工作的要求。这主要因为软件生产中会有各式各样的问题，并要面对不同的环境。我们要在不停地开发新代码的同时，维护线上的代码，于是，就有了下面这些需求。  希望有一个干净的分支，上面是可以发布的代码，上面的改动永远都是可以发布到生产环境中的。这个分支上不能有中间开发过程中不可以上生产线的代码提交。 希望当代码达到可以上线的状态时，也就是">
-<meta name="keywords" content="Git">
+<meta name="description" content="1.URL设计五种 HTTP 方法对应 CRUD 操作（GET、POST、PUT、PATH、DELETE）。动词+宾语结构：GET/articles动词覆盖：POST模拟（PUT、PATH、DELETE），设置X-HTTP-Method-Override: PUT。操作读取集合，复数URL宾语是名词避免多级 URLGET /articles?published=true 2.状态码五类状态码：1相">
+<meta name="keywords" content="HTTP">
 <meta property="og:type" content="article">
-<meta property="og:title" content="GitFlow协同工作流">
-<meta property="og:url" content="http://duqingbin.com/2018/08/25/GitFlow-work/index.html">
+<meta property="og:title" content="RESTful API设计">
+<meta property="og:url" content="http://duqingbin.com/2017/06/18/restful-api/index.html">
 <meta property="og:site_name" content="Jack&#39;s Tech Blog">
-<meta property="og:description" content="在真实的生产过程中，中心式协同工作流与功能分支协同工作流，还不能满足工作的要求。这主要因为软件生产中会有各式各样的问题，并要面对不同的环境。我们要在不停地开发新代码的同时，维护线上的代码，于是，就有了下面这些需求。  希望有一个干净的分支，上面是可以发布的代码，上面的改动永远都是可以发布到生产环境中的。这个分支上不能有中间开发过程中不可以上生产线的代码提交。 希望当代码达到可以上线的状态时，也就是">
+<meta property="og:description" content="1.URL设计五种 HTTP 方法对应 CRUD 操作（GET、POST、PUT、PATH、DELETE）。动词+宾语结构：GET/articles动词覆盖：POST模拟（PUT、PATH、DELETE），设置X-HTTP-Method-Override: PUT。操作读取集合，复数URL宾语是名词避免多级 URLGET /articles?published=true 2.状态码五类状态码：1相">
 <meta property="og:locale" content="en">
-<meta property="og:image" content="http://duqingbin.com/images/9cf4c9bc17bf11aa07d47f61d2137fca.png">
-<meta property="og:updated_time" content="2018-11-23T09:46:57.167Z">
+<meta property="og:updated_time" content="2018-11-26T08:42:55.369Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="GitFlow协同工作流">
-<meta name="twitter:description" content="在真实的生产过程中，中心式协同工作流与功能分支协同工作流，还不能满足工作的要求。这主要因为软件生产中会有各式各样的问题，并要面对不同的环境。我们要在不停地开发新代码的同时，维护线上的代码，于是，就有了下面这些需求。  希望有一个干净的分支，上面是可以发布的代码，上面的改动永远都是可以发布到生产环境中的。这个分支上不能有中间开发过程中不可以上生产线的代码提交。 希望当代码达到可以上线的状态时，也就是">
-<meta name="twitter:image" content="http://duqingbin.com/images/9cf4c9bc17bf11aa07d47f61d2137fca.png">
+<meta name="twitter:title" content="RESTful API设计">
+<meta name="twitter:description" content="1.URL设计五种 HTTP 方法对应 CRUD 操作（GET、POST、PUT、PATH、DELETE）。动词+宾语结构：GET/articles动词覆盖：POST模拟（PUT、PATH、DELETE），设置X-HTTP-Method-Override: PUT。操作读取集合，复数URL宾语是名词避免多级 URLGET /articles?published=true 2.状态码五类状态码：1相">
 
 
 
@@ -122,13 +120,13 @@
 
 
 
-  <link rel="canonical" href="http://duqingbin.com/2018/08/25/GitFlow-work/"/>
+  <link rel="canonical" href="http://duqingbin.com/2017/06/18/restful-api/"/>
 
 
 
 
 
-  <title>GitFlow协同工作流 | Jack's Tech Blog</title>
+  <title>RESTful API设计 | Jack's Tech Blog</title>
   
 
 
@@ -173,7 +171,7 @@
       </a>
     </div>
       
-        <p class="site-subtitle">Technology Blog</p>
+        <p class="site-subtitle">Tech Blog</p>
       
   </div>
 
@@ -299,7 +297,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://duqingbin.com/2018/08/25/GitFlow-work/">
+    <link itemprop="mainEntityOfPage" href="http://duqingbin.com/2017/06/18/restful-api/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="Jack Du">
@@ -316,7 +314,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">GitFlow协同工作流</h1>
+          <h1 class="post-title" itemprop="name headline">RESTful API设计</h1>
         
 
         <div class="post-meta">
@@ -328,8 +326,8 @@
               
                 <span class="post-meta-item-text">Posted on</span>
               
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-08-25T14:29:08+08:00">
-                2018-08-25
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2017-06-18T14:32:55+08:00">
+                2017-06-18
               </time>
             
 
@@ -351,8 +349,8 @@
               
               
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/管理/" itemprop="url" rel="index">
-                    <span itemprop="name">管理</span>
+                  <a href="/categories/后端/" itemprop="url" rel="index">
+                    <span itemprop="name">后端</span>
                   </a>
                 </span>
 
@@ -388,33 +386,14 @@
       
 
       
-        <p>在真实的生产过程中，中心式协同工作流与功能分支协同工作流，还不能满足工作的要求。<br>这主要因为软件生产中会有各式各样的问题，并要面对不同的环境。我们要在不停地开发新代码的同时，维护线上的代码，于是，就有了下面这些需求。</p>
-<ol>
-<li>希望有一个干净的分支，上面是可以发布的代码，上面的改动永远都是可以发布到生产环境中的。这个分支上不能有中间开发过程中不可以上生产线的代码提交。</li>
-<li>希望当代码达到可以上线的状态时，也就是在 alpha/beta release 时，在测试和交付的过程中，依然可以开发下一个版本的代码。</li>
-<li>对于已经发布的代码，也会有一些 Bug-fix 的改动，不会将正在开发的代码提交到生产线上去。</li>
-</ol>
-<p>面对这些需求，前面的协同方式就不行了。因为我们不仅是要在整个团队中共享代码，更要管理好代码与环境的一致性。</p>
-<p>为了解决这些问题，GitFlow 协同工作流就出来了。</p>
-<p>GitFlow 协同工作流是由 Vincent Driessen 于 2010 年在 A successful Git branching model 这篇文章介绍给世人的。</p>
-<p>这个协同工作流的核心思想如下图所示。<br><img src="/images/9cf4c9bc17bf11aa07d47f61d2137fca.png" alt="9cf4c9bc17bf11aa07d47f61d2137fca.png"></p>
-<p>整个代码库中一共有五种分支。</p>
-<ul>
-<li>Master 主干分支，用作发布环境，上面的每一次提交都是可以发布的。</li>
-<li>Feature 功能分支，用于开发功能，其对应的是开发环境。</li>
-<li>Developer 开发分支，一旦功能开发完成，就向 Developer 分支合并，合并完成后，删除功能分支。这个分支对应的是集成测试环境。</li>
-<li>Release 当 Developer 分支测试达到可以发布状态时，开出一个 Release 分支来，然后做发布前的准备工作。这个分支对应的是预发环境。之所以需要这个 Release 分支，是我们的开发可以继续向前，不会因为要发布而被 block 住而不能提交。</li>
-<li>一旦 Release 分支上的代码达到可以上线的状态，那么需要把 Release 分支向 Master 分支和 Developer 分支同时合并，以保证代码的一致性。然后再把 Release 分支删除掉。</li>
-<li>Hotfix 是用于处理生产线上代码的 Bug-fix，每个线上代码的 Bug-fix 都需要开一个 Hotfix 分支，完成后，向 Developer 分支和 Master 分支上合并。合并完成后，删除 Hotfix 分支。</li>
-</ul>
-<p>通过整个 GitFlow 协同工作流程可以看到：</p>
-<ol>
-<li>要长期维护 Master 和 Developer 两个分支。</li>
-<li>这种方式还是有一定复杂度的，尤其是 Release 和 Hotfix 分支需要同时向两个分支作合并。所以，如果没有一个好的工具来支撑的话，这会因为我们可能会忘了做一些操作而导致代码不一致。</li>
-<li>GitFlow 协同虽然工作流比较重。但是它几乎可以应对所有公司的各种开发流程，包括瀑布模型，或是快速迭代模型。</li>
-</ol>
-<p>之后有不需要维护多个版本，也不需要关注不同的运行环境，只需要一套代码，就可以了。GitHub Flow/Gitlab Flow 或是功能分支这种方式也更适应这种开发方式也更适应这种开发。</p>
-<p>参考：<br>Git协同工作流，你该怎样选</p>
+        <h4 id="1-URL设计"><a href="#1-URL设计" class="headerlink" title="1.URL设计"></a>1.URL设计</h4><p>五种 HTTP 方法对应 CRUD 操作（GET、POST、PUT、PATH、DELETE）。<br>动词+宾语结构：GET/articles<br>动词覆盖：POST模拟（PUT、PATH、DELETE），设置X-HTTP-Method-Override: PUT。<br>操作读取集合，复数URL<br>宾语是名词<br>避免多级 URL<br>GET /articles?published=true</p>
+<h4 id="2-状态码"><a href="#2-状态码" class="headerlink" title="2.状态码"></a>2.状态码</h4><p>五类状态码：1相关信息，2操作成功，3重定向，4客户端错误，5服务器错误</p>
+<p>API 不需要1xx状态码。</p>
+<p>200 OK，（GET，PATCH，PUT）<br>201 Created（生成了新的资源），POST<br>202 Accepted（服务器已经收到请求，但还未进行处理，常用异步操作）<br>204 No Content（资源已经不存在），DELETE<br>301（永久重定向） 浏览器会直接跳转，API不用考虑<br>302，307 GET（暂时重定向）浏览器会直接跳转，API不用考虑<br>303 POST/PUT/DELETE（参考另一个 URL）浏览器不会自动跳转，而会让用户自己决定下一步<br>400 Bad Request：服务器不理解客户端的请求，未做任何处理<br>401 Unauthorized：用户未提供身份验证凭据，或者没有通过身份验证。<br>403 Forbidden：用户通过了身份验证，但是不具有访问资源所需的权限。<br>404 Not Found：所请求的资源不存在，或不可用。<br>405 Method Not Allowed：用户已经通过身份验证，但是所用的 HTTP 方法不在他的权限之内。<br>410 Gone：所请求的资源已从这个地址转移，不再可用。<br>415 Unsupported Media Type：客户端要求的返回格式不支持。比如，API 只能返回 JSON 格式，但是客户端要求返回 XML 格式。<br>422 Unprocessable Entity ：客户端上传的附件无法处理，导致请求失败。<br>429 Too Many Requests：客户端的请求次数超过限额。<br>500 Internal Server Error：客户端请求有效，服务器处理时发生了意外。<br>503 Service Unavailable：服务器无法处理请求，一般用于网站维护状态。</p>
+<h4 id="3-服务器响应"><a href="#3-服务器响应" class="headerlink" title="3.服务器响应"></a>3.服务器响应</h4><p>服务器返回JSON对象，服务器响应时，HTTP 头的Content-Type属性要设为application/json。<br>客户端请求时，HTTP 头的ACCEPT属性也要设成application/json。</p>
+<p>发生错误时，不要返回 200 状态码，状态码反映发生的错误，具体的错误信息放在数据体里面返回</p>
+<p>提供URL链接，例如：api.github.com 一步步查找就可以了（最好将相关链接与其他属性分开）。</p>
+<p>参考：<br><a href="https://blog.florimondmanca.com/restful-api-design-13-best-practices-to-make-your-users-happy" target="_blank" rel="noopener">https://blog.florimondmanca.com/restful-api-design-13-best-practices-to-make-your-users-happy</a><br><a href="https://docs.microsoft.com/en-us/azure/architecture/best-practices/api-design" target="_blank" rel="noopener">https://docs.microsoft.com/en-us/azure/architecture/best-practices/api-design</a><br><a href="http://www.ruanyifeng.com/blog/2018/10/restful-api-best-practices.html" target="_blank" rel="noopener">http://www.ruanyifeng.com/blog/2018/10/restful-api-best-practices.html</a></p>
 
       
     </div>
@@ -432,7 +411,7 @@
       
         <div class="post-tags">
           
-            <a href="/tags/Git/" rel="tag"># Git</a>
+            <a href="/tags/HTTP/" rel="tag"># HTTP</a>
           
         </div>
       
@@ -445,8 +424,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2018/08/17/how-to-select-open-agreement/" rel="next" title="如何选择开源协议">
-                <i class="fa fa-chevron-left"></i> 如何选择开源协议
+              <a href="/2017/06/15/cors-http-request/" rel="next" title="CORS跨域">
+                <i class="fa fa-chevron-left"></i> CORS跨域
               </a>
             
           </div>
@@ -455,8 +434,8 @@
 
           <div class="post-nav-prev post-nav-item">
             
-              <a href="/2018/09/19/React-used-Problem/" rel="prev" title="React常见问题">
-                React常见问题 <i class="fa fa-chevron-right"></i>
+              <a href="/2017/10/22/create-a-remote-work-team/" rel="prev" title="如何建立一只远程团队">
+                如何建立一只远程团队 <i class="fa fa-chevron-right"></i>
               </a>
             
           </div>
@@ -509,8 +488,17 @@
       
 
       
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            Table of Contents
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            Overview
+          </li>
+        </ul>
+      
 
-      <section class="site-overview-wrap sidebar-panel sidebar-panel-active">
+      <section class="site-overview-wrap sidebar-panel">
         <div class="site-overview">
           <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
             
@@ -584,6 +572,22 @@
         </div>
       </section>
 
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-4"><a class="nav-link" href="#1-URL设计"><span class="nav-number">1.</span> <span class="nav-text">1.URL设计</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#2-状态码"><span class="nav-number">2.</span> <span class="nav-text">2.状态码</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#3-服务器响应"><span class="nav-number">3.</span> <span class="nav-text">3.服务器响应</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
       
 
       

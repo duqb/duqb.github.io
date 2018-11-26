@@ -68,7 +68,7 @@
 
 
 
-  <meta name="keywords" content="Markdown," />
+  <meta name="keywords" content="JavaScript,ES6," />
 
 
 
@@ -79,20 +79,18 @@
 
 
 
-<meta name="description" content="Markdown优点Markdown是一种轻量级标记语言，它以纯文本形式(易读、易写、易更改)编写文档，并最终以HTML格式发布。  纯文本，兼容性极强，所有文本编辑器都可打开。 标记语法可读性强。 让你专注于文字而不是排版。 格式转换方便，轻松转换为 html、电子书等。 摆脱Word。 跨平台使用。 越来越多的网站支持Markdown。  Markdown语法代码与语法高亮代码区块的建立是在每">
-<meta name="keywords" content="Markdown">
+<meta name="description" content="1.promise是什么promise对象拥有一个叫做状态的属性，该属性不受外界影响，修改后不能再次变化。而Promise是一个构造函数，可以生成promise对象。 2.promise的构造方法resolve，reject，race，all四个方法都会返回一个promise。 resolve：resolve接受一个值或是promise对象，如果接受的是promise对象，会直接返回该promis">
+<meta name="keywords" content="JavaScript,ES6">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Markdown基本用法">
-<meta property="og:url" content="http://duqingbin.com/2016/10/26/Markdown-Basic/index.html">
+<meta property="og:title" content="Promise简记">
+<meta property="og:url" content="http://duqingbin.com/2017/12/13/promise/index.html">
 <meta property="og:site_name" content="Jack&#39;s Tech Blog">
-<meta property="og:description" content="Markdown优点Markdown是一种轻量级标记语言，它以纯文本形式(易读、易写、易更改)编写文档，并最终以HTML格式发布。  纯文本，兼容性极强，所有文本编辑器都可打开。 标记语法可读性强。 让你专注于文字而不是排版。 格式转换方便，轻松转换为 html、电子书等。 摆脱Word。 跨平台使用。 越来越多的网站支持Markdown。  Markdown语法代码与语法高亮代码区块的建立是在每">
+<meta property="og:description" content="1.promise是什么promise对象拥有一个叫做状态的属性，该属性不受外界影响，修改后不能再次变化。而Promise是一个构造函数，可以生成promise对象。 2.promise的构造方法resolve，reject，race，all四个方法都会返回一个promise。 resolve：resolve接受一个值或是promise对象，如果接受的是promise对象，会直接返回该promis">
 <meta property="og:locale" content="en">
-<meta property="og:image" content="http://duqingbin.com/images/4766746846417a2e706e67.png">
-<meta property="og:updated_time" content="2018-11-23T06:08:31.289Z">
+<meta property="og:updated_time" content="2018-11-26T08:44:51.427Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Markdown基本用法">
-<meta name="twitter:description" content="Markdown优点Markdown是一种轻量级标记语言，它以纯文本形式(易读、易写、易更改)编写文档，并最终以HTML格式发布。  纯文本，兼容性极强，所有文本编辑器都可打开。 标记语法可读性强。 让你专注于文字而不是排版。 格式转换方便，轻松转换为 html、电子书等。 摆脱Word。 跨平台使用。 越来越多的网站支持Markdown。  Markdown语法代码与语法高亮代码区块的建立是在每">
-<meta name="twitter:image" content="http://duqingbin.com/images/4766746846417a2e706e67.png">
+<meta name="twitter:title" content="Promise简记">
+<meta name="twitter:description" content="1.promise是什么promise对象拥有一个叫做状态的属性，该属性不受外界影响，修改后不能再次变化。而Promise是一个构造函数，可以生成promise对象。 2.promise的构造方法resolve，reject，race，all四个方法都会返回一个promise。 resolve：resolve接受一个值或是promise对象，如果接受的是promise对象，会直接返回该promis">
 
 
 
@@ -122,13 +120,13 @@
 
 
 
-  <link rel="canonical" href="http://duqingbin.com/2016/10/26/Markdown-Basic/"/>
+  <link rel="canonical" href="http://duqingbin.com/2017/12/13/promise/"/>
 
 
 
 
 
-  <title>Markdown基本用法 | Jack's Tech Blog</title>
+  <title>Promise简记 | Jack's Tech Blog</title>
   
 
 
@@ -173,7 +171,7 @@
       </a>
     </div>
       
-        <p class="site-subtitle">Technology Blog</p>
+        <p class="site-subtitle">Tech Blog</p>
       
   </div>
 
@@ -299,7 +297,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://duqingbin.com/2016/10/26/Markdown-Basic/">
+    <link itemprop="mainEntityOfPage" href="http://duqingbin.com/2017/12/13/promise/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="Jack Du">
@@ -316,7 +314,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">Markdown基本用法</h1>
+          <h1 class="post-title" itemprop="name headline">Promise简记</h1>
         
 
         <div class="post-meta">
@@ -328,8 +326,8 @@
               
                 <span class="post-meta-item-text">Posted on</span>
               
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2016-10-26T17:31:28+08:00">
-                2016-10-26
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2017-12-13T14:34:46+08:00">
+                2017-12-13
               </time>
             
 
@@ -338,6 +336,28 @@
             
           </span>
 
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">In</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/前端/" itemprop="url" rel="index">
+                    <span itemprop="name">前端</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
           
 
           
@@ -366,87 +386,38 @@
       
 
       
-        <h3 id="Markdown优点"><a href="#Markdown优点" class="headerlink" title="Markdown优点"></a>Markdown优点</h3><p>Markdown是一种轻量级标记语言，它以纯文本形式(易读、易写、易更改)编写文档，并最终以HTML格式发布。</p>
+        <h4 id="1-promise是什么"><a href="#1-promise是什么" class="headerlink" title="1.promise是什么"></a>1.promise是什么</h4><p>promise对象拥有一个叫做状态的属性，该属性不受外界影响，修改后不能再次变化。而Promise是一个构造函数，可以生成promise对象。</p>
+<h4 id="2-promise的构造方法"><a href="#2-promise的构造方法" class="headerlink" title="2.promise的构造方法"></a>2.promise的构造方法</h4><p>resolve，reject，race，all四个方法都会返回一个promise。</p>
+<p><strong>resolve</strong>：resolve接受一个值或是promise对象，如果接受的是promise对象，会直接返回该promise对象，否则返回完成状态的promise对象<br><strong>reject</strong>：类似resolve，返回的是拒绝状态的promise<br><strong>all</strong>：接受一个数组，分为三种情况</p>
 <ul>
-<li>纯文本，兼容性极强，所有文本编辑器都可打开。</li>
-<li>标记语法可读性强。</li>
-<li>让你专注于文字而不是排版。</li>
-<li>格式转换方便，轻松转换为 html、电子书等。</li>
-<li>摆脱Word。</li>
-<li>跨平台使用。</li>
-<li>越来越多的网站支持Markdown。</li>
+<li>传入空数组，返回完成状态的promise</li>
+<li>传入的数组中没有promise，返回异步完成的prmise</li>
+<li>传入的数组中有promise，返回处于pending状态的promise对象，在数组中的promise都成功或者有一个失败时，变成完成状态或拒绝状态</li>
 </ul>
-<h3 id="Markdown语法"><a href="#Markdown语法" class="headerlink" title="Markdown语法"></a>Markdown语法</h3><h4 id="代码与语法高亮"><a href="#代码与语法高亮" class="headerlink" title="代码与语法高亮"></a>代码与语法高亮</h4><p>代码区块的建立是在每行加上4个空格或者一个制表符（如同写代码一样）</p>
-<pre><code>&lt;php&gt;
-       echo “不带行号&quot;;
-&lt;/php&gt;
-</code></pre><figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">&lt;php&gt;</span><br><span class="line">    <span class="keyword">echo</span> <span class="string">'带行号'</span>;</span><br><span class="line">&lt;/php&gt;</span><br></pre></td></tr></table></figure>
-<p> 行内需要引用代码，只要用反引号引起来</p>
-<pre><code>Use the `console.log(&apos;test&apos;)` function.
-</code></pre><h4 id="标题"><a href="#标题" class="headerlink" title="标题"></a>标题</h4><pre><code># 一级标题
-## 二级标题
-### 三级标题
-#### 四级标题
-##### 五级标题
-###### 六级标题
-</code></pre><h4 id="列表"><a href="#列表" class="headerlink" title="列表"></a>列表</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">- 无序列表1</span><br><span class="line">- 无序列表2</span><br><span class="line">- 无序列表3</span><br><span class="line"></span><br><span class="line">1. 有序列表1</span><br><span class="line">2. 有序列表2</span><br><span class="line">3. 有序列表3</span><br></pre></td></tr></table></figure>
-<h4 id="引用"><a href="#引用" class="headerlink" title="引用"></a>引用</h4><pre><code>&gt; 这个是引用
-</code></pre><h4 id="粗体与斜体"><a href="#粗体与斜体" class="headerlink" title="粗体与斜体"></a>粗体与斜体</h4><pre><code>**这个是粗体**
-*这个是斜体*
-</code></pre><h4 id="链接与图片"><a href="#链接与图片" class="headerlink" title="链接与图片"></a>链接与图片</h4><p>插入链接</p>
-<pre><code>[link text](http://example.com/ &quot;optional title&quot;)
-</code></pre><p><a href="http://example.com/" title="optional title" target="_blank" rel="noopener">link text</a></p>
-<pre><code> [link text][id]
- [id]: http://example.com/  &quot;optional title here&quot;
-
-&lt;http://example.com/&gt; or &lt;address@example.com&gt;
-</code></pre><p>插入图片<br>形式和链接相似，只需在链接的基础上前方加一个</p>
-<pre><code>![alt text](/images/example.png &quot;optional title&quot;)
-</code></pre><p><img src="/images/4766746846417a2e706e67.png" alt="alt text" title="Fork you"></p>
-<p>图片与链接写法结合</p>
-<pre><code>[![alt text](/images/4766746846417a2e706e67.png &quot;Fork you&quot;)](你的链接地址)
-</code></pre><h4 id="缩进"><a href="#缩进" class="headerlink" title="缩进"></a>缩进</h4><pre><code>半方大的空白&amp;ensp;或&amp;#8194;
-全方大的空白&amp;emsp;或&amp;#8195;
-不断行的空白格&amp;nbsp;或&amp;#160;
-</code></pre><h4 id="分割线"><a href="#分割线" class="headerlink" title="分割线"></a>分割线</h4><p>可以在一行中用三个以上的星号、减号、底线来建立一个分隔线</p>
-<hr>
-<h4 id="删除线"><a href="#删除线" class="headerlink" title="删除线"></a>删除线</h4><pre><code>~~Mistaken text.~~
-</code></pre><p><del>Mistaken text.</del></p>
-<h4 id="反斜杠"><a href="#反斜杠" class="headerlink" title="反斜杠\"></a>反斜杠\</h4><p>相当于反转义作用。使符号成为普通符号。</p>
-<h4 id="符号’-’"><a href="#符号’-’" class="headerlink" title="符号’`’"></a>符号’`’</h4><pre><code>`ctrl+a`
-</code></pre><h4 id="表格"><a href="#表格" class="headerlink" title="表格"></a>表格</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">ABCD | EFGH | IGKL</span><br><span class="line">-----|------|----</span><br><span class="line">a    | b    | c</span><br><span class="line">d    | e    | f</span><br><span class="line">g    | h    | i</span><br></pre></td></tr></table></figure>
-<table>
-<thead>
-<tr>
-<th>ABCD</th>
-<th>EFGH</th>
-<th>IGKL</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>a</td>
-<td>b</td>
-<td>c</td>
-</tr>
-<tr>
-<td>d</td>
-<td>e</td>
-<td>f</td>
-</tr>
-<tr>
-<td>g</td>
-<td>h</td>
-<td>i</td>
-</tr>
-</tbody>
-</table>
-<h4 id="任务"><a href="#任务" class="headerlink" title="任务"></a>任务</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">- [x] @mentions, #refs, [links](), **formatting**, and &lt;del&gt;tags&lt;/del&gt; are supported</span><br><span class="line">- [ ] this is an incomplete item</span><br></pre></td></tr></table></figure>
+<p><strong>race</strong>：同all有点接近，在某个promise完成后，返回该值，根据状态来决定返回的是完成状态还是拒绝状态的promise<br>如果传入的是空数组，返回的promise永远是等待</p>
+<h4 id="3-promise对象的方法"><a href="#3-promise对象的方法" class="headerlink" title="3.promise对象的方法"></a>3.promise对象的方法</h4><p><strong>then</strong>:<br>then接受两个参数，返回一个promise。第一个参数是promise在成功的情况下的回调函数，第二个参数是失败情况下的(可选)。</p>
 <ul>
-<li style="list-style: none"><input type="checkbox" checked> @mentions, #refs, <a href="">links</a>, <strong>formatting</strong>, and <del>tags</del> are supported</li>
-<li style="list-style: none"><input type="checkbox"> this is an incomplete item</li>
+<li>如果then中的回调函数返回一个值，那么then返回的Promise将会成为接受状态，并且将返回的值作为接受状态的回调函数的参数值。</li>
+<li>如果then中的回调函数抛出一个错误，那么then返回的Promise将会成为拒绝状态，并且将抛出的错误作为拒绝状态的回调函数的参数值。</li>
+<li>如果then中的回调函数返回一个已经是接受状态的Promise，那么then返回的Promise也会成为接受状态，并且将那个Promise的接受状态的回调函数的参数值作为该被返回的Promise的接受状态回调函数的参数值。</li>
+<li>如果then中的回调函数返回一个已经是拒绝状态的Promise，那么then返回的Promise也会成为拒绝状态，并且将那个Promise的拒绝状态的回调函数的参数值作为该被返回的Promise的拒绝状态回调函数的参数值。</li>
+<li>如果then中的回调函数返回一个未定状态（pending）的Promise，那么then返回Promise的状态也是未定的，并且它的终态与那个Promise的终态相同；同时，它变为终态时调用的回调函数参数与那个Promise变为终态时的回调函数的参数是相同的。</li>
 </ul>
-<p>参考：<br><a href="http://younghz.github.io/Markdown/" target="_blank" rel="noopener">http://younghz.github.io/Markdown/</a><br><a href="https://coolshell.cn/articles/11928.html" target="_blank" rel="noopener">https://coolshell.cn/articles/11928.html</a></p>
+<p><strong>catch</strong>:<br>跟Promise.prototype.then(undefined, onRejected)一致</p>
+<h4 id="3-promise的优缺点"><a href="#3-promise的优缺点" class="headerlink" title="3.promise的优缺点"></a>3.promise的优缺点</h4><p>优点:</p>
+<ol>
+<li>跟callback相比，避免的回调地域无限嵌套，可以使用链式写法</li>
+<li>约束了异步处理的写法</li>
+<li>便于捕捉错误</li>
+</ol>
+<p>缺点:</p>
+<ol>
+<li>无法取消promise</li>
+<li>无法处理多次触发的事件</li>
+<li>无法获取当前执行的进度信息</li>
+</ol>
+<p><strong>注意</strong>：一些情况下可以使用Promise.race来取消promise。比如设置异步请求在三秒不成功的话取消，可以在Promise.race的第二个参数加一个三秒的定时器。</p>
+<p>参考：<br><a href="http://hpoenixf.com/posts/10947/" target="_blank" rel="noopener">http://hpoenixf.com/posts/10947/</a><br><a href="https://github.com/mqyqingfeng/Blog/issues/98" target="_blank" rel="noopener">https://github.com/mqyqingfeng/Blog/issues/98</a><br><a href="http://es6.ruanyifeng.com/#docs/promise#Promise-all" target="_blank" rel="noopener">http://es6.ruanyifeng.com/#docs/promise#Promise-all</a></p>
 
       
     </div>
@@ -464,7 +435,9 @@
       
         <div class="post-tags">
           
-            <a href="/tags/Markdown/" rel="tag"># Markdown</a>
+            <a href="/tags/JavaScript/" rel="tag"># JavaScript</a>
+          
+            <a href="/tags/ES6/" rel="tag"># ES6</a>
           
         </div>
       
@@ -477,8 +450,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2016/10/24/HelloWorld/" rel="next" title="Hello World">
-                <i class="fa fa-chevron-left"></i> Hello World
+              <a href="/2017/10/22/create-a-remote-work-team/" rel="next" title="如何建立一只远程团队">
+                <i class="fa fa-chevron-left"></i> 如何建立一只远程团队
               </a>
             
           </div>
@@ -487,8 +460,8 @@
 
           <div class="post-nav-prev post-nav-item">
             
-              <a href="/2016/11/26/browser-cash-principle/" rel="prev" title="浏览器缓存机制">
-                浏览器缓存机制 <i class="fa fa-chevron-right"></i>
+              <a href="/2018/06/18/block-chain-tech/" rel="prev" title="区块链技术">
+                区块链技术 <i class="fa fa-chevron-right"></i>
               </a>
             
           </div>
@@ -635,7 +608,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#Markdown优点"><span class="nav-number">1.</span> <span class="nav-text">Markdown优点</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Markdown语法"><span class="nav-number">2.</span> <span class="nav-text">Markdown语法</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#代码与语法高亮"><span class="nav-number">2.1.</span> <span class="nav-text">代码与语法高亮</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#标题"><span class="nav-number">2.2.</span> <span class="nav-text">标题</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#列表"><span class="nav-number">2.3.</span> <span class="nav-text">列表</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#引用"><span class="nav-number">2.4.</span> <span class="nav-text">引用</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#粗体与斜体"><span class="nav-number">2.5.</span> <span class="nav-text">粗体与斜体</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#链接与图片"><span class="nav-number">2.6.</span> <span class="nav-text">链接与图片</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#缩进"><span class="nav-number">2.7.</span> <span class="nav-text">缩进</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#分割线"><span class="nav-number">2.8.</span> <span class="nav-text">分割线</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#删除线"><span class="nav-number">2.9.</span> <span class="nav-text">删除线</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#反斜杠"><span class="nav-number">2.10.</span> <span class="nav-text">反斜杠\</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#符号’-’"><span class="nav-number">2.11.</span> <span class="nav-text">符号’`’</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#表格"><span class="nav-number">2.12.</span> <span class="nav-text">表格</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#任务"><span class="nav-number">2.13.</span> <span class="nav-text">任务</span></a></li></ol></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-4"><a class="nav-link" href="#1-promise是什么"><span class="nav-number">1.</span> <span class="nav-text">1.promise是什么</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#2-promise的构造方法"><span class="nav-number">2.</span> <span class="nav-text">2.promise的构造方法</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#3-promise对象的方法"><span class="nav-number">3.</span> <span class="nav-text">3.promise对象的方法</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#3-promise的优缺点"><span class="nav-number">4.</span> <span class="nav-text">3.promise的优缺点</span></a></li></ol></div>
             
 
           </div>

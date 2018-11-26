@@ -79,18 +79,18 @@
 
 
 
-<meta name="description" content="1.React组件划分按职责划分: UI组件负责UI的呈现，容器组件负责管理数据和逻辑。UI组件嵌套在容器组件中，容器组件通过React-redux提供的connect方法拿到store中的数据。组件设计原则:1.高内聚低耦合（组件自身不依赖于其他组件，抽象可复用组件让使用者之间没有耦合关系）2.周期性迭代（先整体后部分再颗粒化，尽可能抽象）数据管理原则:1.能计算得到状态就不要单独存储。2.组件">
+<meta name="description" content="1.前言React 的 diff 算法作为 Virtual DOM 的加速器，其算法上的改进优化是 React 整个界面渲染的基础，以及性能提高的保障，同时也是 React 源码中最神秘、最不可思议的部分，本文从源码入手，深入剖析 React diff 的不可思议之处. 2.传统 diff 算法传统 diff 算法的复杂度为 O(n^3)，显然这是无法满足性能要求的。React 通过制定大胆的策略">
 <meta name="keywords" content="JavaScript,React">
 <meta property="og:type" content="article">
-<meta property="og:title" content="React常见问题">
-<meta property="og:url" content="http://duqingbin.com/2018/09/19/React-used-Problem/index.html">
+<meta property="og:title" content="React的diff算法">
+<meta property="og:url" content="http://duqingbin.com/2018/09/22/react-diff/index.html">
 <meta property="og:site_name" content="Jack&#39;s Tech Blog">
-<meta property="og:description" content="1.React组件划分按职责划分: UI组件负责UI的呈现，容器组件负责管理数据和逻辑。UI组件嵌套在容器组件中，容器组件通过React-redux提供的connect方法拿到store中的数据。组件设计原则:1.高内聚低耦合（组件自身不依赖于其他组件，抽象可复用组件让使用者之间没有耦合关系）2.周期性迭代（先整体后部分再颗粒化，尽可能抽象）数据管理原则:1.能计算得到状态就不要单独存储。2.组件">
+<meta property="og:description" content="1.前言React 的 diff 算法作为 Virtual DOM 的加速器，其算法上的改进优化是 React 整个界面渲染的基础，以及性能提高的保障，同时也是 React 源码中最神秘、最不可思议的部分，本文从源码入手，深入剖析 React diff 的不可思议之处. 2.传统 diff 算法传统 diff 算法的复杂度为 O(n^3)，显然这是无法满足性能要求的。React 通过制定大胆的策略">
 <meta property="og:locale" content="en">
-<meta property="og:updated_time" content="2018-11-23T05:55:30.524Z">
+<meta property="og:updated_time" content="2018-11-26T08:45:04.240Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="React常见问题">
-<meta name="twitter:description" content="1.React组件划分按职责划分: UI组件负责UI的呈现，容器组件负责管理数据和逻辑。UI组件嵌套在容器组件中，容器组件通过React-redux提供的connect方法拿到store中的数据。组件设计原则:1.高内聚低耦合（组件自身不依赖于其他组件，抽象可复用组件让使用者之间没有耦合关系）2.周期性迭代（先整体后部分再颗粒化，尽可能抽象）数据管理原则:1.能计算得到状态就不要单独存储。2.组件">
+<meta name="twitter:title" content="React的diff算法">
+<meta name="twitter:description" content="1.前言React 的 diff 算法作为 Virtual DOM 的加速器，其算法上的改进优化是 React 整个界面渲染的基础，以及性能提高的保障，同时也是 React 源码中最神秘、最不可思议的部分，本文从源码入手，深入剖析 React diff 的不可思议之处. 2.传统 diff 算法传统 diff 算法的复杂度为 O(n^3)，显然这是无法满足性能要求的。React 通过制定大胆的策略">
 
 
 
@@ -120,13 +120,13 @@
 
 
 
-  <link rel="canonical" href="http://duqingbin.com/2018/09/19/React-used-Problem/"/>
+  <link rel="canonical" href="http://duqingbin.com/2018/09/22/react-diff/"/>
 
 
 
 
 
-  <title>React常见问题 | Jack's Tech Blog</title>
+  <title>React的diff算法 | Jack's Tech Blog</title>
   
 
 
@@ -171,7 +171,7 @@
       </a>
     </div>
       
-        <p class="site-subtitle">Technology Blog</p>
+        <p class="site-subtitle">Tech Blog</p>
       
   </div>
 
@@ -297,7 +297,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://duqingbin.com/2018/09/19/React-used-Problem/">
+    <link itemprop="mainEntityOfPage" href="http://duqingbin.com/2018/09/22/react-diff/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="Jack Du">
@@ -314,7 +314,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">React常见问题</h1>
+          <h1 class="post-title" itemprop="name headline">React的diff算法</h1>
         
 
         <div class="post-meta">
@@ -326,8 +326,8 @@
               
                 <span class="post-meta-item-text">Posted on</span>
               
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-09-19T20:35:03+08:00">
-                2018-09-19
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-09-22T13:15:23+08:00">
+                2018-09-22
               </time>
             
 
@@ -386,23 +386,45 @@
       
 
       
-        <h3 id="1-React组件划分"><a href="#1-React组件划分" class="headerlink" title="1.React组件划分"></a>1.React组件划分</h3><p>按职责划分: UI组件负责UI的呈现，容器组件负责管理数据和逻辑。UI组件嵌套在容器组件中，容器组件通过React-redux提供的connect方法拿到store中的数据。<br>组件设计原则:<br>1.高内聚低耦合（组件自身不依赖于其他组件，抽象可复用组件让使用者之间没有耦合关系）<br>2.周期性迭代（先整体后部分再颗粒化，尽可能抽象）<br>数据管理原则:<br>1.能计算得到状态就不要单独存储。<br>2.组件尽量没有状态，所需数据通过props获取。<br>具体使用可以参照如下链接:<br><a href="http://www.ruanyifeng.com/blog/2016/09/redux_tutorial_part_three_react-redux.html" target="_blank" rel="noopener">http://www.ruanyifeng.com/blog/2016/09/redux_tutorial_part_three_react-redux.html</a></p>
-<h3 id="2-React组件的生命周期"><a href="#2-React组件的生命周期" class="headerlink" title="2.React组件的生命周期"></a>2.React组件的生命周期</h3><p>Render阶段（暂停），Pre-commit阶段（可读），commit阶段（可用）<br>1.创建时:<br>constructor: 组件更新到页面前先创建出来<br>getDefaultProps: 获取实例的默认属性 (old)<br>getInitialState: 获取每个实例的初始化状态（old）<br>componentWillMount: 组件即将被装载、渲染到页面上<br>render: 组件在这里生成虚拟的DOM节点<br>componentDidMount: 组件真正在被装载之后可操作了（ajax等）<br>2.更新时:<br>getDerivedStateFromProps: 用外部的属性初始化一些内部的状态（16.3引入）<br>componentWillReceiveProps: 组件将要接收到属性的时候调用 （16.3被取代）<br>shouldComponentUpdate: 组件接受到新属性或者新状态的时候（可以返回false，接收数据后不更新，阻止render调用，后面的函数不会被继续执行了，可用于性能优化）<br>componentWillUpdate: 组件即将更新不能修改属性和状态<br>render: 组件重新描绘<br>getSnapshotBeforeUpdate: 例如获取滚动条滚动高度再减去,不动的效果（16.3引入）<br>componentDidUpdate: 组件已经更新<br>3.卸载时:<br>componentWillUnmount:组件即将销毁</p>
-<h3 id="3-React性能优化方案"><a href="#3-React性能优化方案" class="headerlink" title="3.React性能优化方案"></a>3.React性能优化方案</h3><p>1.使用production版本<br>2.使用key来帮助React识别列表中所有子组件的最小变化。<br>3.重写shouldComponentUpdate来避免不必要的dom操作。(判断是否需要调用render方法重新描绘dom)<br>参考链接：<a href="https://segmentfault.com/a/1190000006254212" target="_blank" rel="noopener">https://segmentfault.com/a/1190000006254212</a></p>
-<h3 id="4-理解diff算法"><a href="#4-理解diff算法" class="headerlink" title="4.理解diff算法"></a>4.理解diff算法</h3><p>把树形结构按照层级分解，只比较同级元素。<br>给列表结构的每个单元添加唯一的key属性，方便比较。<br>React只会匹配相同tag class的component（这里面的class指的是组件的名字）<br>合并操作，调用component的setState方法的时候, React将其标记为dirty.到每一个事件循环结束,React检查所有标记dirty的component重新绘制。<br>选择性子树渲染。开发人员可以重写shouldComponentUpdate提高diff的性能。<br>参考链接：<a href="https://segmentfault.com/a/1190000000606216" target="_blank" rel="noopener">https://segmentfault.com/a/1190000000606216</a></p>
-<h3 id="5-虚拟dom如何提高性能"><a href="#5-虚拟dom如何提高性能" class="headerlink" title="5.虚拟dom如何提高性能"></a>5.虚拟dom如何提高性能</h3><p>虚拟dom相当于在js和真实dom中间加了一个缓存，利用diff算法避免了没有必要的dom操作，从而提高性能。<br>步骤：<br>1.用对象结构表示DOM树的结构,然后用这个树构建一个真正的DOM树，插到文档当中。<br>2.当状态变更时，重新构造一棵新的对象树。用新的树和旧的树进行比较，记录两棵树差异。<br>3.把记录的差异应用到最开始构建的真正的DOM树上，视图就更新了。<br>参考链接：<a href="https://www.zhihu.com/question/29504639?sort=created" target="_blank" rel="noopener">https://www.zhihu.com/question/29504639?sort=created</a></p>
-<h3 id="6-flux工作流程"><a href="#6-flux工作流程" class="headerlink" title="6.flux工作流程"></a>6.flux工作流程</h3><p>最大特点:”单向数据流”。<br>1.用户访问View<br>2.View发出用户的Action<br>3.Dispatcher收到Action，要求Store进行相应的更新<br>4.Store更新后，发出一个”change”事件<br>5.View 收到”change”事件后，更新页面<br>参考链接：<a href="http://www.ruanyifeng.com/blog/2016/01/flux.html" target="_blank" rel="noopener">http://www.ruanyifeng.com/blog/2016/01/flux.html</a></p>
-<h3 id="7-redux中间件"><a href="#7-redux中间件" class="headerlink" title="7.redux中间件"></a>7.redux中间件</h3><p>中间件提供第三方插件的模式，自定义拦截 action -&gt; reducer 的过程。<br>变为 action -&gt; middlewares -&gt; reducer 。<br>这种机制可以让我们改变数据流，实现如异步 action ，action 过滤，日志输出，异常报告等功能。<br>常见的中间件：<br>redux-logger：提供日志输出<br>redux-thunk：处理异步操作<br>redux-promise：处理异步操作，actionCreator的返回值是promise</p>
-<h3 id="8-redux有什么缺点"><a href="#8-redux有什么缺点" class="headerlink" title="8.redux有什么缺点"></a>8.redux有什么缺点</h3><p>1.一个组件所需要的数据，必须由父组件传过来，而不能像flux中直接从store取。<br>2.当一个组件相关数据更新时，即使父组件不需要用到这个组件，父组件还是会重新render，可能会有效率影响，或者需要写复杂的shouldComponentUpdate进行判断。</p>
-<h3 id="9-React项目中的脚手架"><a href="#9-React项目中的脚手架" class="headerlink" title="9.React项目中的脚手架"></a>9.React项目中的脚手架</h3><p>Mern：MERN是脚手架的工具，它可以很容易地使用MongoDB, Express, React and NodeJS生成同构JS应用。它最大限度地减少安装时间，并得到您使用的成熟技术来加速开发。<br>参考链接：<a href="http://www.open-open.com/lib/view/open1455953055292.html" target="_blank" rel="noopener">http://www.open-open.com/lib/view/open1455953055292.html</a></p>
-<h3 id="11-在React当中Element和Component的区别？"><a href="#11-在React当中Element和Component的区别？" class="headerlink" title="11.在React当中Element和Component的区别？"></a>11.在React当中Element和Component的区别？</h3><p>简单地说，一个React Element描述了你想在屏幕上看到什么。换个说法就是，一个React Element是一些UI的对象表示。一个Read component是一个函数或一个类，它可以接受输入并返回一个React Element （通常是通过JSX，它被转化成一个createElement调用）。 </p>
-<h3 id="12-可以选择性地传递给setstate的第二个参数是什么，它的目的是什么？"><a href="#12-可以选择性地传递给setstate的第二个参数是什么，它的目的是什么？" class="headerlink" title="12.可以选择性地传递给setstate的第二个参数是什么，它的目的是什么？"></a>12.可以选择性地传递给setstate的第二个参数是什么，它的目的是什么？</h3><p>一个回调函数，当setstate结束并re-rendered该组件时将被调用。一些没有说出来的东西是 setstate是异步的，这就是为什么它需要一个第二个回调函数。通常最好使用另一个生命周期方法，而不是依赖这个回调函数，但是很高兴知道它存在。<br><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">this</span>.setstate( </span><br><span class="line">    &#123; <span class="attr">username</span> : <span class="string">'tylermcginnis33'</span> &#125; ,</span><br><span class="line">    ()=&gt; <span class="built_in">console</span>.log (<span class="string">'setstate has flnlshed and the component re-rende red.'</span>)</span><br><span class="line">    )</span><br></pre></td></tr></table></figure></p>
-<p>这段代码有什么问题？</p>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">this</span>.setstate ( ( prevstate , props ）=&gt; &#123; </span><br><span class="line"><span class="keyword">return</span> &#123;</span><br><span class="line">   Streak : prevstate.Streak + props.count</span><br><span class="line">   &#125;</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
-<p>没问题。只是这种写法很少被使用，你也可以传递一个函数给setstate ，它接收到先前的状态和道具并返回一个新的状态，它不仅没有什么问题，而且如果您根据以前的状态（ state ）设置状态，推荐使用这种写法。</p>
-<h3 id="13-为什么要使React-children-map-props-children-gt-而不是props-children-map-gt"><a href="#13-为什么要使React-children-map-props-children-gt-而不是props-children-map-gt" class="headerlink" title="13.为什么要使React.children.map(props.children,()=&gt;)而不是props.children.map(()=&gt;)"></a>13.为什么要使React.children.map(props.children,()=&gt;)而不是props.children.map(()=&gt;)</h3><p>因为不能保证props.children将是一个数组．<br>以此代码为例,<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">&lt;Parent&gt;</span><br><span class="line">    &lt;h1＞Welcome.&lt;/h1&gt;</span><br><span class="line">&lt;/Parent&gt;</span><br></pre></td></tr></table></figure></p>
-<p>在父组件内部，如果我们尝试使用props.children.map映射孩子，则会抛出错误，因为props.children是一个对象，而不是一个数组。<br>如果有多个子元素React只会使props.children成为一个数组。就像下面这样：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">&lt;Parent&gt;</span><br><span class="line">    &lt;h1＞Welcome.&lt;/h1&gt;</span><br><span class="line">    &lt;h2&gt;props.children will now be an array&lt;/h2&gt;</span><br><span class="line">&lt;/Parent&gt;</span><br></pre></td></tr></table></figure></p>
-<p>这就是为什么你喜欢React.children.map,因为它的实现考虑到props.children可能是一个数组或一个对象。</p>
+        <h3 id="1-前言"><a href="#1-前言" class="headerlink" title="1.前言"></a>1.前言</h3><p>React 的 diff 算法作为 Virtual DOM 的加速器，其算法上的改进优化是 React 整个界面渲染的基础，以及性能提高的保障，同时也是 React 源码中最神秘、最不可思议的部分，本文从源码入手，深入剖析 React diff 的不可思议之处.</p>
+<h3 id="2-传统-diff-算法"><a href="#2-传统-diff-算法" class="headerlink" title="2.传统 diff 算法"></a>2.传统 diff 算法</h3><p>传统 diff 算法的复杂度为 O(n^3)，显然这是无法满足性能要求的。React 通过制定大胆的策略，将 O(n^3) 复杂度的问题转换成 O(n) 复杂度的问题。</p>
+<p>计算一棵树形结构转换成另一棵树形结构的最少操作，是一个复杂且值得研究的问题。传统 diff 算法通过循环递归对节点进行依次对比，效率低下，算法复杂度达到 O(n^3)，其中 n 是树中节点的总数。O(n^3) 到底有多可怕，这意味着如果要展示1000个节点，就要依次执行上十亿次的比较。这种指数型的性能消耗对于前端渲染场景来说代价太高了！现今的 CPU 每秒钟能执行大约30亿条指令，即便是最高效的实现，也不可能在一秒内计算出差异情况。</p>
+<h3 id="3-详解-React-diff"><a href="#3-详解-React-diff" class="headerlink" title="3.详解 React diff"></a>3.详解 React diff</h3><h4 id="diff-策略"><a href="#diff-策略" class="headerlink" title="diff 策略"></a>diff 策略</h4><ol>
+<li>Web UI 中 DOM 节点跨层级的移动操作特别少，可以忽略不计。</li>
+<li>拥有相同类的两个组件将会生成相似的树形结构，拥有不同类的两个组件将会生成不同的树形结构。 </li>
+<li>对于同一层级的一组子节点，它们可以通过唯一 id 进行区分。</li>
+</ol>
+<p>基于以上三个前提策略，React 分别对 tree diff、component diff 以及 element diff 进行算法优化，事实也证明这三个前提策略是合理且准确的，它保证了整体界面构建的性能。</p>
+<h4 id="tree-diff"><a href="#tree-diff" class="headerlink" title="tree diff"></a>tree diff</h4><p>对两棵树进行分层比较，只会对同一层次的节点进行比较(同一个父节点下的所有子节点)。当发现节点已经不存在，则该节点及其子节点会被完全删除掉，不在进一步比较。对树进行一次遍历就完成了整个 DOM 树的比较。</p>
+<p>当出现节点跨层级移动时，并不会出现移动操作，而是以 A 为根节点的树被整个重新创建，由于影响性能，官方不建议进行 DOM 节点跨层级的操作。</p>
+<blockquote>
+<p>注意：在开发组件时，保持稳定的 DOM 结构会有助于性能的提升。例如，可以通过 CSS 隐藏或显示节点，而不是真的移除或添加 DOM 节点。</p>
+</blockquote>
+<h4 id="component-diff"><a href="#component-diff" class="headerlink" title="component diff"></a>component diff</h4><ul>
+<li>同一类型的组件，按原策略继续比较 virtual DOM tree。</li>
+<li>不同类型的组件，则判断为 dirty component，替换整个组件下的所有子节点。</li>
+<li>同一类型的组件，Virtual DOM 没有任何变化（如果知道），通过 shouldComponentUpdate() 来判断该组件是否需要进行 diff。</li>
+</ul>
+<p>如果结构相似但是不同类型的组件。就不会比较二者的结构，而是直接删除重建。（很少存在）</p>
+<h4 id="element-diff"><a href="#element-diff" class="headerlink" title="element diff"></a>element diff</h4><p>当节点处于同一层级时，React diff 提供了三种节点操作，分别为：INSERT_MARKUP（插入）、MOVE_EXISTING（移动）和 REMOVE_NODE（删除）。</p>
+<ul>
+<li>插入：新的 component 类型不在老集合里， 即是全新的节点，对新节点执行插入操作。</li>
+<li>移动：老集合有新 component 类型，且 element 是可更新的类型，generateComponentChildren 已调用 receiveComponent，这种情况下 prevChild=nextChild，就需要做移动操作，可以复用以前的 DOM 节点。</li>
+<li>删除：老 component 类型，在新集合里也有，但对应的 element 不同则不能直接复用和更新，需要执行删除操作，或者老 component 不在新集合里的，也需要执行删除操作。</li>
+</ul>
+<p>新老集合进行 diff 差异化对比，通过 key 发现新老集合中的节点都是相同的节点，因此无需进行节点删除和创建，只需要将老集合中节点的位置进行移动，更新为新集合中节点的位置</p>
+<blockquote>
+<p>建议：在开发过程中，尽量减少类似将最后一个节点移动到列表首部的操作，当节点数量过大或更新操作过于频繁时，在一定程度上会影响 React 的渲染性能。</p>
+</blockquote>
+<h3 id="4-总结"><a href="#4-总结" class="headerlink" title="4.总结"></a>4.总结</h3><ol>
+<li>React 通过 diff 策略，将 O(n3) 复杂度的问题转换成 O(n) 复杂度的问题；</li>
+<li>React 通过分层求异的策略，对 tree diff 进行算法优化；</li>
+<li>React 通过相同类生成相似树形结构，不同类生成不同树形结构的策略，对 component diff 进行算法优化；</li>
+<li>React 通过设置唯一 key的策略，对 element diff 进行算法优化；</li>
+<li>建议，在开发组件时，保持稳定的 DOM 结构会有助于性能的提升；</li>
+<li>建议，在开发过程中，尽量减少类似将最后一个节点移动到列表首部的操作，当节点数量过大或更新操作过于频繁时，在一定程度上会影响 React 的渲染性能。</li>
+</ol>
+<p>参考：<br><a href="https://zhuanlan.zhihu.com/p/20346379" target="_blank" rel="noopener">https://zhuanlan.zhihu.com/p/20346379</a><br><a href="https://calendar.perfplanet.com/2013/diff/" target="_blank" rel="noopener">https://calendar.perfplanet.com/2013/diff/</a><br><a href="https://grfia.dlsi.ua.es/ml/algorithms/references/editsurvey_bille.pdf" target="_blank" rel="noopener">https://grfia.dlsi.ua.es/ml/algorithms/references/editsurvey_bille.pdf</a><br><a href="https://reactjs.org/docs/reconciliation.html" target="_blank" rel="noopener">https://reactjs.org/docs/reconciliation.html</a><br><a href="https://github.com/livoras/blog/issues/13" target="_blank" rel="noopener">https://github.com/livoras/blog/issues/13</a></p>
 
       
     </div>
@@ -435,8 +457,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2018/08/25/GitFlow-work/" rel="next" title="GitFlow协同工作流">
-                <i class="fa fa-chevron-left"></i> GitFlow协同工作流
+              <a href="/2018/09/20/hexo-problem/" rel="next" title="Hexo中遇到的问题">
+                <i class="fa fa-chevron-left"></i> Hexo中遇到的问题
               </a>
             
           </div>
@@ -445,8 +467,8 @@
 
           <div class="post-nav-prev post-nav-item">
             
-              <a href="/2018/09/20/Hexo-used-problem/" rel="prev" title="Hexo中遇到的问题">
-                Hexo中遇到的问题 <i class="fa fa-chevron-right"></i>
+              <a href="/2018/11/05/btc-white-book-english-and-chinese/" rel="prev" title="比特币白皮书(中英文对照版)">
+                比特币白皮书(中英文对照版) <i class="fa fa-chevron-right"></i>
               </a>
             
           </div>
@@ -593,7 +615,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#1-React组件划分"><span class="nav-number">1.</span> <span class="nav-text">1.React组件划分</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-React组件的生命周期"><span class="nav-number">2.</span> <span class="nav-text">2.React组件的生命周期</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3-React性能优化方案"><span class="nav-number">3.</span> <span class="nav-text">3.React性能优化方案</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#4-理解diff算法"><span class="nav-number">4.</span> <span class="nav-text">4.理解diff算法</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#5-虚拟dom如何提高性能"><span class="nav-number">5.</span> <span class="nav-text">5.虚拟dom如何提高性能</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#6-flux工作流程"><span class="nav-number">6.</span> <span class="nav-text">6.flux工作流程</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#7-redux中间件"><span class="nav-number">7.</span> <span class="nav-text">7.redux中间件</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#8-redux有什么缺点"><span class="nav-number">8.</span> <span class="nav-text">8.redux有什么缺点</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#9-React项目中的脚手架"><span class="nav-number">9.</span> <span class="nav-text">9.React项目中的脚手架</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#11-在React当中Element和Component的区别？"><span class="nav-number">10.</span> <span class="nav-text">11.在React当中Element和Component的区别？</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#12-可以选择性地传递给setstate的第二个参数是什么，它的目的是什么？"><span class="nav-number">11.</span> <span class="nav-text">12.可以选择性地传递给setstate的第二个参数是什么，它的目的是什么？</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#13-为什么要使React-children-map-props-children-gt-而不是props-children-map-gt"><span class="nav-number">12.</span> <span class="nav-text">13.为什么要使React.children.map(props.children,()=&gt;)而不是props.children.map(()=&gt;)</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#1-前言"><span class="nav-number">1.</span> <span class="nav-text">1.前言</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-传统-diff-算法"><span class="nav-number">2.</span> <span class="nav-text">2.传统 diff 算法</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3-详解-React-diff"><span class="nav-number">3.</span> <span class="nav-text">3.详解 React diff</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#diff-策略"><span class="nav-number">3.1.</span> <span class="nav-text">diff 策略</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#tree-diff"><span class="nav-number">3.2.</span> <span class="nav-text">tree diff</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#component-diff"><span class="nav-number">3.3.</span> <span class="nav-text">component diff</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#element-diff"><span class="nav-number">3.4.</span> <span class="nav-text">element diff</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#4-总结"><span class="nav-number">4.</span> <span class="nav-text">4.总结</span></a></li></ol></div>
             
 
           </div>

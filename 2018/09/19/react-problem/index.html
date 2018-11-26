@@ -68,7 +68,7 @@
 
 
 
-  <meta name="keywords" content="JavaScript," />
+  <meta name="keywords" content="JavaScript,React," />
 
 
 
@@ -79,21 +79,18 @@
 
 
 
-<meta name="description" content="1.单线程避免多线程同时操作DOM，带来复杂的同步问题，同一个时间只能做一件事，提高效率。（Web Worker允许创建多个子线程但不得操作DOM,还是单线程） 2.任务队列任务排队等待一个一个执行。如果遇到很慢的，如网络读取数据，挂起处于等待中的任务，先运行排在后面的任务。挂起的任务出了结果，再回头继续执行。  同步任务（synchronous）：主线程上排队执行的任务。 异步任务（asynch">
-<meta name="keywords" content="JavaScript">
+<meta name="description" content="1.React组件划分按职责划分: UI组件负责UI的呈现，容器组件负责管理数据和逻辑。UI组件嵌套在容器组件中，容器组件通过React-redux提供的connect方法拿到store中的数据。组件设计原则:1.高内聚低耦合（组件自身不依赖于其他组件，抽象可复用组件让使用者之间没有耦合关系）2.周期性迭代（先整体后部分再颗粒化，尽可能抽象）数据管理原则:1.能计算得到状态就不要单独存储。2.组件">
+<meta name="keywords" content="JavaScript,React">
 <meta property="og:type" content="article">
-<meta property="og:title" content="JavaScript运行机制">
-<meta property="og:url" content="http://duqingbin.com/2017/02/22/JavaScript-run-principle/index.html">
+<meta property="og:title" content="React常见问题">
+<meta property="og:url" content="http://duqingbin.com/2018/09/19/react-problem/index.html">
 <meta property="og:site_name" content="Jack&#39;s Tech Blog">
-<meta property="og:description" content="1.单线程避免多线程同时操作DOM，带来复杂的同步问题，同一个时间只能做一件事，提高效率。（Web Worker允许创建多个子线程但不得操作DOM,还是单线程） 2.任务队列任务排队等待一个一个执行。如果遇到很慢的，如网络读取数据，挂起处于等待中的任务，先运行排在后面的任务。挂起的任务出了结果，再回头继续执行。  同步任务（synchronous）：主线程上排队执行的任务。 异步任务（asynch">
+<meta property="og:description" content="1.React组件划分按职责划分: UI组件负责UI的呈现，容器组件负责管理数据和逻辑。UI组件嵌套在容器组件中，容器组件通过React-redux提供的connect方法拿到store中的数据。组件设计原则:1.高内聚低耦合（组件自身不依赖于其他组件，抽象可复用组件让使用者之间没有耦合关系）2.周期性迭代（先整体后部分再颗粒化，尽可能抽象）数据管理原则:1.能计算得到状态就不要单独存储。2.组件">
 <meta property="og:locale" content="en">
-<meta property="og:image" content="http://duqingbin.com/images/da078fa3eadf3db4bf455904ae06f84b.png">
-<meta property="og:image" content="http://duqingbin.com/images/20c8ec0e32db9d302955408622f7c91e.png">
-<meta property="og:updated_time" content="2018-11-23T09:48:23.876Z">
+<meta property="og:updated_time" content="2018-11-26T08:45:19.140Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="JavaScript运行机制">
-<meta name="twitter:description" content="1.单线程避免多线程同时操作DOM，带来复杂的同步问题，同一个时间只能做一件事，提高效率。（Web Worker允许创建多个子线程但不得操作DOM,还是单线程） 2.任务队列任务排队等待一个一个执行。如果遇到很慢的，如网络读取数据，挂起处于等待中的任务，先运行排在后面的任务。挂起的任务出了结果，再回头继续执行。  同步任务（synchronous）：主线程上排队执行的任务。 异步任务（asynch">
-<meta name="twitter:image" content="http://duqingbin.com/images/da078fa3eadf3db4bf455904ae06f84b.png">
+<meta name="twitter:title" content="React常见问题">
+<meta name="twitter:description" content="1.React组件划分按职责划分: UI组件负责UI的呈现，容器组件负责管理数据和逻辑。UI组件嵌套在容器组件中，容器组件通过React-redux提供的connect方法拿到store中的数据。组件设计原则:1.高内聚低耦合（组件自身不依赖于其他组件，抽象可复用组件让使用者之间没有耦合关系）2.周期性迭代（先整体后部分再颗粒化，尽可能抽象）数据管理原则:1.能计算得到状态就不要单独存储。2.组件">
 
 
 
@@ -123,13 +120,13 @@
 
 
 
-  <link rel="canonical" href="http://duqingbin.com/2017/02/22/JavaScript-run-principle/"/>
+  <link rel="canonical" href="http://duqingbin.com/2018/09/19/react-problem/"/>
 
 
 
 
 
-  <title>JavaScript运行机制 | Jack's Tech Blog</title>
+  <title>React常见问题 | Jack's Tech Blog</title>
   
 
 
@@ -174,7 +171,7 @@
       </a>
     </div>
       
-        <p class="site-subtitle">Technology Blog</p>
+        <p class="site-subtitle">Tech Blog</p>
       
   </div>
 
@@ -300,7 +297,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://duqingbin.com/2017/02/22/JavaScript-run-principle/">
+    <link itemprop="mainEntityOfPage" href="http://duqingbin.com/2018/09/19/react-problem/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="Jack Du">
@@ -317,7 +314,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">JavaScript运行机制</h1>
+          <h1 class="post-title" itemprop="name headline">React常见问题</h1>
         
 
         <div class="post-meta">
@@ -329,8 +326,8 @@
               
                 <span class="post-meta-item-text">Posted on</span>
               
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2017-02-22T14:21:34+08:00">
-                2017-02-22
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-09-19T20:35:03+08:00">
+                2018-09-19
               </time>
             
 
@@ -389,45 +386,23 @@
       
 
       
-        <h4 id="1-单线程"><a href="#1-单线程" class="headerlink" title="1.单线程"></a>1.单线程</h4><p>避免多线程同时操作DOM，带来复杂的同步问题，同一个时间只能做一件事，提高效率。（Web Worker允许创建多个子线程但不得操作DOM,还是单线程）</p>
-<h4 id="2-任务队列"><a href="#2-任务队列" class="headerlink" title="2.任务队列"></a>2.任务队列</h4><p>任务排队等待一个一个执行。如果遇到很慢的，如网络读取数据，挂起处于等待中的任务，先运行排在后面的任务。挂起的任务出了结果，再回头继续执行。</p>
-<ul>
-<li>同步任务（synchronous）：主线程上排队执行的任务。</li>
-<li>异步任务（asynchronous）：不进入主线程、而进入”任务队列”（task queue）的任务，只有”任务队列”通知主线程，某个异步任务可以执行了，该任务才会进入主线程执行。</li>
-</ul>
-<p><strong>异步执行机制：</strong> （主线程 执行栈 任务队列）</p>
-<ol>
-<li>所有同步任务都在主线程上执行，形成一个执行栈（execution context stack）。</li>
-<li>主线程之外，还存在一个”任务队列”（task queue）。只要异步任务有了运行结果，就在”任务队列”之中放置一个事件。</li>
-<li>一旦”执行栈”中的所有同步任务执行完毕，系统就会读取”任务队列”，看看里面有哪些事件。那些对应的异步任务，于是结束等待状态，进入执行栈，开始执行。</li>
-<li>主线程不断重复上面的第三步。</li>
-</ol>
-<p>只要主线程空了，就会去读取”任务队列”，这就是JavaScript的运行机制。这个过程会不断重复。</p>
-<h4 id="3-事件和回调函数"><a href="#3-事件和回调函数" class="headerlink" title="3.事件和回调函数"></a>3.事件和回调函数</h4><p>任务队列(事件的队列)：</p>
-<ul>
-<li>IO设备完成一项任务，就在任务队列添加一个事件。主线程来读取的就是这些事件。</li>
-<li>还包括用户产生的事件click、scroll等，事件发生时就进入任务队列，等待主线程读取。</li>
-</ul>
-<p>回调函数（callback）：是挂起来的代码，主线程执行异步任务，就是执行对应的回调函数。</p>
-<p>任务队列是一个先进先出的数据结构，只要执行栈一清空，任务队列上第一位的事件就自动进入主线程。（定时器功能使某些事件按时间返回主线程）</p>
-<h4 id="4-事件循环-Event-Loop"><a href="#4-事件循环-Event-Loop" class="headerlink" title="4.事件循环(Event Loop)"></a>4.事件循环(Event Loop)</h4><p>主线程产生堆（heap）和栈（stack）,栈中调用外部API，向任务队列中加入事件（click、load、done）。栈中执行完，主线程就读取任务队列，依次执行回调函数。</p>
-<p><img src="/images/da078fa3eadf3db4bf455904ae06f84b.png" alt="da078fa3eadf3db4bf455904ae06f84b.png"></p>
-<p>例如Ajax。指定回调函数的部分（onload和onerror），在send()方法的前面或后面无关紧要，因为它们属于执行栈的一部分，系统总是执行完它们，才会去读取任务队列。</p>
-<h4 id="5-定时器"><a href="#5-定时器" class="headerlink" title="5.定时器"></a>5.定时器</h4><p>定时器功能主要由setTimeout()和setInterval()这两个函数来完成。</p>
-<p>定时器等到同步任务和任务队列现有的事件都处理完，才会得到执行。</p>
-<p>定时器只是将事件插入了任务队列，必须等执行栈，执行完，主线程才会去执行它指定的回调函数。（当前代码耗时很长，有可能要等很久，所以并没有办法保证，回调函数一定会在指定的时间执行）</p>
-<p>如果setTimeout加入队列的阻塞时间大于两个setTimeout执行的间隔时间，那么先加入任务队列的先执行，尽管它里面设置的时间可能比另一个setTimeout的要大。</p>
-<h4 id="6-Node-js的Event-Loop"><a href="#6-Node-js的Event-Loop" class="headerlink" title="6.Node.js的Event Loop"></a>6.Node.js的Event Loop</h4><p>Node.js也是单线程的Event Loop，但是它的运行机制不同于浏览器环境。</p>
-<p><img src="/images/20c8ec0e32db9d302955408622f7c91e.png" alt="20c8ec0e32db9d302955408622f7c91e.png"></p>
-<p><strong>Node.js的运行机制：</strong></p>
-<ul>
-<li>V8引擎解析JavaScript脚本。</li>
-<li>解析后的代码，调用Node API。</li>
-<li>libuv库负责Node API的执行。它将不同的任务分配给不同的线程，形成一个Event Loop（事件循环），以异步的方式将任务的执行结果返回给V8引擎。</li>
-<li>V8引擎再将结果返回给用户。</li>
-</ul>
-<p>Node.js提供的任务队列方法：<br>process.nextTick方法，指定的任务总是发生在所有异步任务之前（本次触发）。<br>setImmediate方法，指定的任务总是在下一次Event Loop时执行（下次触发）。</p>
-<p>参考：<br><a href="https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/EventLoop" target="_blank" rel="noopener">https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/EventLoop</a><br><a href="http://www.ruanyifeng.com/blog/2014/10/event-loop.html" target="_blank" rel="noopener">http://www.ruanyifeng.com/blog/2014/10/event-loop.html</a></p>
+        <h3 id="1-React组件划分"><a href="#1-React组件划分" class="headerlink" title="1.React组件划分"></a>1.React组件划分</h3><p>按职责划分: UI组件负责UI的呈现，容器组件负责管理数据和逻辑。UI组件嵌套在容器组件中，容器组件通过React-redux提供的connect方法拿到store中的数据。<br>组件设计原则:<br>1.高内聚低耦合（组件自身不依赖于其他组件，抽象可复用组件让使用者之间没有耦合关系）<br>2.周期性迭代（先整体后部分再颗粒化，尽可能抽象）<br>数据管理原则:<br>1.能计算得到状态就不要单独存储。<br>2.组件尽量没有状态，所需数据通过props获取。<br>具体使用可以参照如下链接:<br><a href="http://www.ruanyifeng.com/blog/2016/09/redux_tutorial_part_three_react-redux.html" target="_blank" rel="noopener">http://www.ruanyifeng.com/blog/2016/09/redux_tutorial_part_three_react-redux.html</a></p>
+<h3 id="2-React组件的生命周期"><a href="#2-React组件的生命周期" class="headerlink" title="2.React组件的生命周期"></a>2.React组件的生命周期</h3><p>Render阶段（暂停），Pre-commit阶段（可读），commit阶段（可用）<br>1.创建时:<br>constructor: 组件更新到页面前先创建出来<br>getDefaultProps: 获取实例的默认属性 (old)<br>getInitialState: 获取每个实例的初始化状态（old）<br>componentWillMount: 组件即将被装载、渲染到页面上<br>render: 组件在这里生成虚拟的DOM节点<br>componentDidMount: 组件真正在被装载之后可操作了（ajax等）<br>2.更新时:<br>getDerivedStateFromProps: 用外部的属性初始化一些内部的状态（16.3引入）<br>componentWillReceiveProps: 组件将要接收到属性的时候调用 （16.3被取代）<br>shouldComponentUpdate: 组件接受到新属性或者新状态的时候（可以返回false，接收数据后不更新，阻止render调用，后面的函数不会被继续执行了，可用于性能优化）<br>componentWillUpdate: 组件即将更新不能修改属性和状态<br>render: 组件重新描绘<br>getSnapshotBeforeUpdate: 例如获取滚动条滚动高度再减去,不动的效果（16.3引入）<br>componentDidUpdate: 组件已经更新<br>3.卸载时:<br>componentWillUnmount:组件即将销毁</p>
+<h3 id="3-React性能优化方案"><a href="#3-React性能优化方案" class="headerlink" title="3.React性能优化方案"></a>3.React性能优化方案</h3><p>1.使用production版本<br>2.使用key来帮助React识别列表中所有子组件的最小变化。<br>3.重写shouldComponentUpdate来避免不必要的dom操作。(判断是否需要调用render方法重新描绘dom)<br>参考链接：<a href="https://segmentfault.com/a/1190000006254212" target="_blank" rel="noopener">https://segmentfault.com/a/1190000006254212</a></p>
+<h3 id="4-理解diff算法"><a href="#4-理解diff算法" class="headerlink" title="4.理解diff算法"></a>4.理解diff算法</h3><p>把树形结构按照层级分解，只比较同级元素。<br>给列表结构的每个单元添加唯一的key属性，方便比较。<br>React只会匹配相同tag class的component（这里面的class指的是组件的名字）<br>合并操作，调用component的setState方法的时候, React将其标记为dirty.到每一个事件循环结束,React检查所有标记dirty的component重新绘制。<br>选择性子树渲染。开发人员可以重写shouldComponentUpdate提高diff的性能。<br>参考链接：<a href="https://segmentfault.com/a/1190000000606216" target="_blank" rel="noopener">https://segmentfault.com/a/1190000000606216</a></p>
+<h3 id="5-虚拟dom如何提高性能"><a href="#5-虚拟dom如何提高性能" class="headerlink" title="5.虚拟dom如何提高性能"></a>5.虚拟dom如何提高性能</h3><p>虚拟dom相当于在js和真实dom中间加了一个缓存，利用diff算法避免了没有必要的dom操作，从而提高性能。<br>步骤：<br>1.用对象结构表示DOM树的结构,然后用这个树构建一个真正的DOM树，插到文档当中。<br>2.当状态变更时，重新构造一棵新的对象树。用新的树和旧的树进行比较，记录两棵树差异。<br>3.把记录的差异应用到最开始构建的真正的DOM树上，视图就更新了。<br>参考链接：<a href="https://www.zhihu.com/question/29504639?sort=created" target="_blank" rel="noopener">https://www.zhihu.com/question/29504639?sort=created</a></p>
+<h3 id="6-flux工作流程"><a href="#6-flux工作流程" class="headerlink" title="6.flux工作流程"></a>6.flux工作流程</h3><p>最大特点:”单向数据流”。<br>1.用户访问View<br>2.View发出用户的Action<br>3.Dispatcher收到Action，要求Store进行相应的更新<br>4.Store更新后，发出一个”change”事件<br>5.View 收到”change”事件后，更新页面<br>参考链接：<a href="http://www.ruanyifeng.com/blog/2016/01/flux.html" target="_blank" rel="noopener">http://www.ruanyifeng.com/blog/2016/01/flux.html</a></p>
+<h3 id="7-redux中间件"><a href="#7-redux中间件" class="headerlink" title="7.redux中间件"></a>7.redux中间件</h3><p>中间件提供第三方插件的模式，自定义拦截 action -&gt; reducer 的过程。<br>变为 action -&gt; middlewares -&gt; reducer 。<br>这种机制可以让我们改变数据流，实现如异步 action ，action 过滤，日志输出，异常报告等功能。<br>常见的中间件：<br>redux-logger：提供日志输出<br>redux-thunk：处理异步操作<br>redux-promise：处理异步操作，actionCreator的返回值是promise</p>
+<h3 id="8-redux有什么缺点"><a href="#8-redux有什么缺点" class="headerlink" title="8.redux有什么缺点"></a>8.redux有什么缺点</h3><p>1.一个组件所需要的数据，必须由父组件传过来，而不能像flux中直接从store取。<br>2.当一个组件相关数据更新时，即使父组件不需要用到这个组件，父组件还是会重新render，可能会有效率影响，或者需要写复杂的shouldComponentUpdate进行判断。</p>
+<h3 id="9-React项目中的脚手架"><a href="#9-React项目中的脚手架" class="headerlink" title="9.React项目中的脚手架"></a>9.React项目中的脚手架</h3><p>Mern：MERN是脚手架的工具，它可以很容易地使用MongoDB, Express, React and NodeJS生成同构JS应用。它最大限度地减少安装时间，并得到您使用的成熟技术来加速开发。<br>参考链接：<a href="http://www.open-open.com/lib/view/open1455953055292.html" target="_blank" rel="noopener">http://www.open-open.com/lib/view/open1455953055292.html</a></p>
+<h3 id="11-在React当中Element和Component的区别？"><a href="#11-在React当中Element和Component的区别？" class="headerlink" title="11.在React当中Element和Component的区别？"></a>11.在React当中Element和Component的区别？</h3><p>简单地说，一个React Element描述了你想在屏幕上看到什么。换个说法就是，一个React Element是一些UI的对象表示。一个Read component是一个函数或一个类，它可以接受输入并返回一个React Element （通常是通过JSX，它被转化成一个createElement调用）。 </p>
+<h3 id="12-可以选择性地传递给setstate的第二个参数是什么，它的目的是什么？"><a href="#12-可以选择性地传递给setstate的第二个参数是什么，它的目的是什么？" class="headerlink" title="12.可以选择性地传递给setstate的第二个参数是什么，它的目的是什么？"></a>12.可以选择性地传递给setstate的第二个参数是什么，它的目的是什么？</h3><p>一个回调函数，当setstate结束并re-rendered该组件时将被调用。一些没有说出来的东西是 setstate是异步的，这就是为什么它需要一个第二个回调函数。通常最好使用另一个生命周期方法，而不是依赖这个回调函数，但是很高兴知道它存在。<br><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">this</span>.setstate( </span><br><span class="line">    &#123; <span class="attr">username</span> : <span class="string">'tylermcginnis33'</span> &#125; ,</span><br><span class="line">    ()=&gt; <span class="built_in">console</span>.log (<span class="string">'setstate has flnlshed and the component re-rende red.'</span>)</span><br><span class="line">    )</span><br></pre></td></tr></table></figure></p>
+<p>这段代码有什么问题？</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">this</span>.setstate ( ( prevstate , props ）=&gt; &#123; </span><br><span class="line"><span class="keyword">return</span> &#123;</span><br><span class="line">   Streak : prevstate.Streak + props.count</span><br><span class="line">   &#125;</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
+<p>没问题。只是这种写法很少被使用，你也可以传递一个函数给setstate ，它接收到先前的状态和道具并返回一个新的状态，它不仅没有什么问题，而且如果您根据以前的状态（ state ）设置状态，推荐使用这种写法。</p>
+<h3 id="13-为什么要使React-children-map-props-children-gt-而不是props-children-map-gt"><a href="#13-为什么要使React-children-map-props-children-gt-而不是props-children-map-gt" class="headerlink" title="13.为什么要使React.children.map(props.children,()=&gt;)而不是props.children.map(()=&gt;)"></a>13.为什么要使React.children.map(props.children,()=&gt;)而不是props.children.map(()=&gt;)</h3><p>因为不能保证props.children将是一个数组．<br>以此代码为例,<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">&lt;Parent&gt;</span><br><span class="line">    &lt;h1＞Welcome.&lt;/h1&gt;</span><br><span class="line">&lt;/Parent&gt;</span><br></pre></td></tr></table></figure></p>
+<p>在父组件内部，如果我们尝试使用props.children.map映射孩子，则会抛出错误，因为props.children是一个对象，而不是一个数组。<br>如果有多个子元素React只会使props.children成为一个数组。就像下面这样：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">&lt;Parent&gt;</span><br><span class="line">    &lt;h1＞Welcome.&lt;/h1&gt;</span><br><span class="line">    &lt;h2&gt;props.children will now be an array&lt;/h2&gt;</span><br><span class="line">&lt;/Parent&gt;</span><br></pre></td></tr></table></figure></p>
+<p>这就是为什么你喜欢React.children.map,因为它的实现考虑到props.children可能是一个数组或一个对象。</p>
 
       
     </div>
@@ -447,6 +422,8 @@
           
             <a href="/tags/JavaScript/" rel="tag"># JavaScript</a>
           
+            <a href="/tags/React/" rel="tag"># React</a>
+          
         </div>
       
 
@@ -458,8 +435,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2017/01/04/web-frontend-optimize/" rel="next" title="Web前端性能优化">
-                <i class="fa fa-chevron-left"></i> Web前端性能优化
+              <a href="/2018/08/25/gitflow/" rel="next" title="GitFlow协同工作流">
+                <i class="fa fa-chevron-left"></i> GitFlow协同工作流
               </a>
             
           </div>
@@ -468,8 +445,8 @@
 
           <div class="post-nav-prev post-nav-item">
             
-              <a href="/2017/03/22/Flexbox-layout/" rel="prev" title="Flexbox布局">
-                Flexbox布局 <i class="fa fa-chevron-right"></i>
+              <a href="/2018/09/20/hexo-problem/" rel="prev" title="Hexo中遇到的问题">
+                Hexo中遇到的问题 <i class="fa fa-chevron-right"></i>
               </a>
             
           </div>
@@ -616,7 +593,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-4"><a class="nav-link" href="#1-单线程"><span class="nav-number">1.</span> <span class="nav-text">1.单线程</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#2-任务队列"><span class="nav-number">2.</span> <span class="nav-text">2.任务队列</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#3-事件和回调函数"><span class="nav-number">3.</span> <span class="nav-text">3.事件和回调函数</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#4-事件循环-Event-Loop"><span class="nav-number">4.</span> <span class="nav-text">4.事件循环(Event Loop)</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#5-定时器"><span class="nav-number">5.</span> <span class="nav-text">5.定时器</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#6-Node-js的Event-Loop"><span class="nav-number">6.</span> <span class="nav-text">6.Node.js的Event Loop</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#1-React组件划分"><span class="nav-number">1.</span> <span class="nav-text">1.React组件划分</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-React组件的生命周期"><span class="nav-number">2.</span> <span class="nav-text">2.React组件的生命周期</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3-React性能优化方案"><span class="nav-number">3.</span> <span class="nav-text">3.React性能优化方案</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#4-理解diff算法"><span class="nav-number">4.</span> <span class="nav-text">4.理解diff算法</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#5-虚拟dom如何提高性能"><span class="nav-number">5.</span> <span class="nav-text">5.虚拟dom如何提高性能</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#6-flux工作流程"><span class="nav-number">6.</span> <span class="nav-text">6.flux工作流程</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#7-redux中间件"><span class="nav-number">7.</span> <span class="nav-text">7.redux中间件</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#8-redux有什么缺点"><span class="nav-number">8.</span> <span class="nav-text">8.redux有什么缺点</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#9-React项目中的脚手架"><span class="nav-number">9.</span> <span class="nav-text">9.React项目中的脚手架</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#11-在React当中Element和Component的区别？"><span class="nav-number">10.</span> <span class="nav-text">11.在React当中Element和Component的区别？</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#12-可以选择性地传递给setstate的第二个参数是什么，它的目的是什么？"><span class="nav-number">11.</span> <span class="nav-text">12.可以选择性地传递给setstate的第二个参数是什么，它的目的是什么？</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#13-为什么要使React-children-map-props-children-gt-而不是props-children-map-gt"><span class="nav-number">12.</span> <span class="nav-text">13.为什么要使React.children.map(props.children,()=&gt;)而不是props.children.map(()=&gt;)</span></a></li></ol></div>
             
 
           </div>
