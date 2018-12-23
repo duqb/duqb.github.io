@@ -79,19 +79,19 @@
 
 
 
-<meta name="description" content="缓存的工作原理所有缓存都是由一套规则决定什么时候使用缓存中的副本，这些规则定义在协议中（http1.0/1.1）或由缓存管理员设置（如DBA、浏览器的用户、代理服务器管理员或者应用开发者）。 浏览器缓存规则规则定义在HTTP协议头和HTML页面的Meta标签中。用新鲜度和校验值来规定浏览器是否可以直接使用缓存，还是需要去源服务器获取更新的版本。 新鲜度（过期机制）：1.在有效期内的，含有完整的过期">
+<meta name="description" content="1.缓存的工作原理所有缓存都是由一套规则决定什么时候使用缓存中的副本，这些规则定义在协议中（http1.0/1.1）或由缓存管理员设置（如DBA、浏览器的用户、代理服务器管理员或者应用开发者）。 2.浏览器缓存规则规则定义在HTTP协议头和HTML页面的Meta标签中。用新鲜度和校验值来规定浏览器是否可以直接使用缓存，还是需要去源服务器获取更新的版本。 新鲜度（过期机制）：1.在有效期内的，含有完">
 <meta name="keywords" content="浏览器">
 <meta property="og:type" content="article">
 <meta property="og:title" content="浏览器缓存机制">
 <meta property="og:url" content="http://duqingbin.com/2016/11/browser-cash-principle/index.html">
 <meta property="og:site_name" content="Jack&#39;s Tech Blog">
-<meta property="og:description" content="缓存的工作原理所有缓存都是由一套规则决定什么时候使用缓存中的副本，这些规则定义在协议中（http1.0/1.1）或由缓存管理员设置（如DBA、浏览器的用户、代理服务器管理员或者应用开发者）。 浏览器缓存规则规则定义在HTTP协议头和HTML页面的Meta标签中。用新鲜度和校验值来规定浏览器是否可以直接使用缓存，还是需要去源服务器获取更新的版本。 新鲜度（过期机制）：1.在有效期内的，含有完整的过期">
+<meta property="og:description" content="1.缓存的工作原理所有缓存都是由一套规则决定什么时候使用缓存中的副本，这些规则定义在协议中（http1.0/1.1）或由缓存管理员设置（如DBA、浏览器的用户、代理服务器管理员或者应用开发者）。 2.浏览器缓存规则规则定义在HTTP协议头和HTML页面的Meta标签中。用新鲜度和校验值来规定浏览器是否可以直接使用缓存，还是需要去源服务器获取更新的版本。 新鲜度（过期机制）：1.在有效期内的，含有完">
 <meta property="og:locale" content="en">
 <meta property="og:image" content="http://duqingbin.com/images/f13fbce9ebb19c90b60539e982a383de.png">
-<meta property="og:updated_time" content="2018-11-23T06:05:20.347Z">
+<meta property="og:updated_time" content="2018-12-23T15:26:39.968Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="浏览器缓存机制">
-<meta name="twitter:description" content="缓存的工作原理所有缓存都是由一套规则决定什么时候使用缓存中的副本，这些规则定义在协议中（http1.0/1.1）或由缓存管理员设置（如DBA、浏览器的用户、代理服务器管理员或者应用开发者）。 浏览器缓存规则规则定义在HTTP协议头和HTML页面的Meta标签中。用新鲜度和校验值来规定浏览器是否可以直接使用缓存，还是需要去源服务器获取更新的版本。 新鲜度（过期机制）：1.在有效期内的，含有完整的过期">
+<meta name="twitter:description" content="1.缓存的工作原理所有缓存都是由一套规则决定什么时候使用缓存中的副本，这些规则定义在协议中（http1.0/1.1）或由缓存管理员设置（如DBA、浏览器的用户、代理服务器管理员或者应用开发者）。 2.浏览器缓存规则规则定义在HTTP协议头和HTML页面的Meta标签中。用新鲜度和校验值来规定浏览器是否可以直接使用缓存，还是需要去源服务器获取更新的版本。 新鲜度（过期机制）：1.在有效期内的，含有完">
 <meta name="twitter:image" content="http://duqingbin.com/images/f13fbce9ebb19c90b60539e982a383de.png">
 
 
@@ -388,11 +388,11 @@
       
 
       
-        <h4 id="缓存的工作原理"><a href="#缓存的工作原理" class="headerlink" title="缓存的工作原理"></a>缓存的工作原理</h4><p>所有缓存都是由一套规则决定什么时候使用缓存中的副本，这些规则定义在协议中（http1.0/1.1）或由缓存管理员设置（如DBA、浏览器的用户、代理服务器管理员或者应用开发者）。</p>
-<h4 id="浏览器缓存规则"><a href="#浏览器缓存规则" class="headerlink" title="浏览器缓存规则"></a>浏览器缓存规则</h4><p>规则定义在HTTP协议头和HTML页面的Meta标签中。用新鲜度和校验值来规定浏览器是否可以直接使用缓存，还是需要去源服务器获取更新的版本。</p>
+        <h3 id="1-缓存的工作原理"><a href="#1-缓存的工作原理" class="headerlink" title="1.缓存的工作原理"></a>1.缓存的工作原理</h3><p>所有缓存都是由一套规则决定什么时候使用缓存中的副本，这些规则定义在协议中（http1.0/1.1）或由缓存管理员设置（如DBA、浏览器的用户、代理服务器管理员或者应用开发者）。</p>
+<h3 id="2-浏览器缓存规则"><a href="#2-浏览器缓存规则" class="headerlink" title="2.浏览器缓存规则"></a>2.浏览器缓存规则</h3><p>规则定义在HTTP协议头和HTML页面的Meta标签中。用新鲜度和校验值来规定浏览器是否可以直接使用缓存，还是需要去源服务器获取更新的版本。</p>
 <p><strong>新鲜度（过期机制）</strong>：<br>1.在有效期内的，含有完整的过期时间控制头信息（HTTP协议报头）。<br>2.浏览器已经使用过这个缓存副本，并且在一个会话中已经检查过新鲜度。</p>
 <p><strong>校验值（验证机制）</strong>：<br>服务器返回资源的时候有时在控制头信息带上这个资源的实体标签Etag（Entity Tag），再次请求过程的校验标识。不匹配则被修改或过期了，浏览器需求重新获取资源内容。</p>
-<h4 id="浏览器缓存控制"><a href="#浏览器缓存控制" class="headerlink" title="浏览器缓存控制"></a>浏览器缓存控制</h4><p><strong>使用HTML Meta 标签</strong><br><figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">META</span> <span class="attr">HTTP-EQUIV</span>=<span class="string">"Pragma"</span> <span class="attr">CONTENT</span>=<span class="string">"no-cache"</span>&gt;</span></span><br></pre></td></tr></table></figure></p>
+<h3 id="3-浏览器缓存控制"><a href="#3-浏览器缓存控制" class="headerlink" title="3.浏览器缓存控制"></a>3.浏览器缓存控制</h3><p><strong>使用HTML Meta 标签</strong><br><figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">META</span> <span class="attr">HTTP-EQUIV</span>=<span class="string">"Pragma"</span> <span class="attr">CONTENT</span>=<span class="string">"no-cache"</span>&gt;</span></span><br></pre></td></tr></table></figure></p>
 <p>页面不被缓存，每次都去服务器拉取。（仅部分浏览器可以支持）</p>
 <p><strong>使用缓存有关的HTTP消息报头</strong><br>一个URI的完整HTTP协议交互过程是由HTTP请求和HTTP响应组成的。在HTTP请求和响应的消息报头中，常见的与缓存有关的消息报头有：<br><img src="/images/f13fbce9ebb19c90b60539e982a383de.png" alt="f13fbce9ebb19c90b60539e982a383de.png"></p>
 <p><strong>Cache-Control与Expires</strong>: 有效期，控制浏览器读缓存还是读服务器。前者配置更多，优先级更高。</p>
@@ -408,7 +408,7 @@
 <li><p>强制刷新：全失效，重新从服务器拉资源。</p>
 </li>
 </ul>
-<h4 id="哪些请求不能被缓存？"><a href="#哪些请求不能被缓存？" class="headerlink" title="哪些请求不能被缓存？"></a>哪些请求不能被缓存？</h4><ul>
+<h3 id="4-哪些请求不能被缓存？"><a href="#4-哪些请求不能被缓存？" class="headerlink" title="4.哪些请求不能被缓存？"></a>4.哪些请求不能被缓存？</h3><ul>
 <li><p>HTTP响应头中不包含Last-Modified/Etag，也不包含Cache-Control/Expires的请求无法被缓存</p>
 </li>
 <li><p>HTTP信息头中包含Cache-Control:no-cache，pragma:no-cache，或Cache-Control:max-age=0等告诉浏览器不用缓存的请求。</p>
@@ -609,7 +609,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-4"><a class="nav-link" href="#缓存的工作原理"><span class="nav-number">1.</span> <span class="nav-text">缓存的工作原理</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#浏览器缓存规则"><span class="nav-number">2.</span> <span class="nav-text">浏览器缓存规则</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#浏览器缓存控制"><span class="nav-number">3.</span> <span class="nav-text">浏览器缓存控制</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#哪些请求不能被缓存？"><span class="nav-number">4.</span> <span class="nav-text">哪些请求不能被缓存？</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#1-缓存的工作原理"><span class="nav-number">1.</span> <span class="nav-text">1.缓存的工作原理</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-浏览器缓存规则"><span class="nav-number">2.</span> <span class="nav-text">2.浏览器缓存规则</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3-浏览器缓存控制"><span class="nav-number">3.</span> <span class="nav-text">3.浏览器缓存控制</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#4-哪些请求不能被缓存？"><span class="nav-number">4.</span> <span class="nav-text">4.哪些请求不能被缓存？</span></a></li></ol></div>
             
 
           </div>

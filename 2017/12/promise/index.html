@@ -87,7 +87,7 @@
 <meta property="og:site_name" content="Jack&#39;s Tech Blog">
 <meta property="og:description" content="1.promise是什么promise对象拥有一个叫做状态的属性，该属性不受外界影响，修改后不能再次变化。而Promise是一个构造函数，可以生成promise对象。 2.promise的构造方法resolve，reject，race，all四个方法都会返回一个promise。 resolve：resolve接受一个值或是promise对象，如果接受的是promise对象，会直接返回该promis">
 <meta property="og:locale" content="en">
-<meta property="og:updated_time" content="2018-11-26T08:44:51.427Z">
+<meta property="og:updated_time" content="2018-12-23T15:33:34.647Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Promise简记">
 <meta name="twitter:description" content="1.promise是什么promise对象拥有一个叫做状态的属性，该属性不受外界影响，修改后不能再次变化。而Promise是一个构造函数，可以生成promise对象。 2.promise的构造方法resolve，reject，race，all四个方法都会返回一个promise。 resolve：resolve接受一个值或是promise对象，如果接受的是promise对象，会直接返回该promis">
@@ -386,8 +386,8 @@
       
 
       
-        <h4 id="1-promise是什么"><a href="#1-promise是什么" class="headerlink" title="1.promise是什么"></a>1.promise是什么</h4><p>promise对象拥有一个叫做状态的属性，该属性不受外界影响，修改后不能再次变化。而Promise是一个构造函数，可以生成promise对象。</p>
-<h4 id="2-promise的构造方法"><a href="#2-promise的构造方法" class="headerlink" title="2.promise的构造方法"></a>2.promise的构造方法</h4><p>resolve，reject，race，all四个方法都会返回一个promise。</p>
+        <h3 id="1-promise是什么"><a href="#1-promise是什么" class="headerlink" title="1.promise是什么"></a>1.promise是什么</h3><p>promise对象拥有一个叫做状态的属性，该属性不受外界影响，修改后不能再次变化。而Promise是一个构造函数，可以生成promise对象。</p>
+<h3 id="2-promise的构造方法"><a href="#2-promise的构造方法" class="headerlink" title="2.promise的构造方法"></a>2.promise的构造方法</h3><p>resolve，reject，race，all四个方法都会返回一个promise。</p>
 <p><strong>resolve</strong>：resolve接受一个值或是promise对象，如果接受的是promise对象，会直接返回该promise对象，否则返回完成状态的promise对象<br><strong>reject</strong>：类似resolve，返回的是拒绝状态的promise<br><strong>all</strong>：接受一个数组，分为三种情况</p>
 <ul>
 <li>传入空数组，返回完成状态的promise</li>
@@ -395,7 +395,7 @@
 <li>传入的数组中有promise，返回处于pending状态的promise对象，在数组中的promise都成功或者有一个失败时，变成完成状态或拒绝状态</li>
 </ul>
 <p><strong>race</strong>：同all有点接近，在某个promise完成后，返回该值，根据状态来决定返回的是完成状态还是拒绝状态的promise<br>如果传入的是空数组，返回的promise永远是等待</p>
-<h4 id="3-promise对象的方法"><a href="#3-promise对象的方法" class="headerlink" title="3.promise对象的方法"></a>3.promise对象的方法</h4><p><strong>then</strong>:<br>then接受两个参数，返回一个promise。第一个参数是promise在成功的情况下的回调函数，第二个参数是失败情况下的(可选)。</p>
+<h3 id="3-promise对象的方法"><a href="#3-promise对象的方法" class="headerlink" title="3.promise对象的方法"></a>3.promise对象的方法</h3><p><strong>then</strong>:<br>then接受两个参数，返回一个promise。第一个参数是promise在成功的情况下的回调函数，第二个参数是失败情况下的(可选)。</p>
 <ul>
 <li>如果then中的回调函数返回一个值，那么then返回的Promise将会成为接受状态，并且将返回的值作为接受状态的回调函数的参数值。</li>
 <li>如果then中的回调函数抛出一个错误，那么then返回的Promise将会成为拒绝状态，并且将抛出的错误作为拒绝状态的回调函数的参数值。</li>
@@ -404,7 +404,7 @@
 <li>如果then中的回调函数返回一个未定状态（pending）的Promise，那么then返回Promise的状态也是未定的，并且它的终态与那个Promise的终态相同；同时，它变为终态时调用的回调函数参数与那个Promise变为终态时的回调函数的参数是相同的。</li>
 </ul>
 <p><strong>catch</strong>:<br>跟Promise.prototype.then(undefined, onRejected)一致</p>
-<h4 id="3-promise的优缺点"><a href="#3-promise的优缺点" class="headerlink" title="3.promise的优缺点"></a>3.promise的优缺点</h4><p>优点:</p>
+<h3 id="4-promise的优缺点"><a href="#4-promise的优缺点" class="headerlink" title="4.promise的优缺点"></a>4.promise的优缺点</h3><p>优点:</p>
 <ol>
 <li>跟callback相比，避免的回调地域无限嵌套，可以使用链式写法</li>
 <li>约束了异步处理的写法</li>
@@ -608,7 +608,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-4"><a class="nav-link" href="#1-promise是什么"><span class="nav-number">1.</span> <span class="nav-text">1.promise是什么</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#2-promise的构造方法"><span class="nav-number">2.</span> <span class="nav-text">2.promise的构造方法</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#3-promise对象的方法"><span class="nav-number">3.</span> <span class="nav-text">3.promise对象的方法</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#3-promise的优缺点"><span class="nav-number">4.</span> <span class="nav-text">3.promise的优缺点</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#1-promise是什么"><span class="nav-number">1.</span> <span class="nav-text">1.promise是什么</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-promise的构造方法"><span class="nav-number">2.</span> <span class="nav-text">2.promise的构造方法</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3-promise对象的方法"><span class="nav-number">3.</span> <span class="nav-text">3.promise对象的方法</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#4-promise的优缺点"><span class="nav-number">4.</span> <span class="nav-text">4.promise的优缺点</span></a></li></ol></div>
             
 
           </div>

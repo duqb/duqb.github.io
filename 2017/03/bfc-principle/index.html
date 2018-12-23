@@ -87,7 +87,7 @@
 <meta property="og:site_name" content="Jack&#39;s Tech Blog">
 <meta property="og:description" content="1.常见定位方案有三种:  普通流 (normal flow): 元素按HTML文档中的位置自上而下布局。 浮动 (float)：先按照普通流，然后根据浮动方向偏移脱离普通流。 绝对定位 (absolute positioning)：整体脱离普通流，不影响兄弟元素，位置由坐标绝地。  2.BFC 概念Block Formatting context(块级格式上下文) 是 W3C 规范中的一个概念。">
 <meta property="og:locale" content="en">
-<meta property="og:updated_time" content="2018-12-21T15:33:13.636Z">
+<meta property="og:updated_time" content="2018-12-23T15:26:58.766Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="CSS的BFC原理">
 <meta name="twitter:description" content="1.常见定位方案有三种:  普通流 (normal flow): 元素按HTML文档中的位置自上而下布局。 浮动 (float)：先按照普通流，然后根据浮动方向偏移脱离普通流。 绝对定位 (absolute positioning)：整体脱离普通流，不影响兄弟元素，位置由坐标绝地。  2.BFC 概念Block Formatting context(块级格式上下文) 是 W3C 规范中的一个概念。">
@@ -386,14 +386,14 @@
       
 
       
-        <h4 id="1-常见定位方案"><a href="#1-常见定位方案" class="headerlink" title="1.常见定位方案"></a>1.常见定位方案</h4><p>有三种:</p>
+        <h3 id="1-常见定位方案"><a href="#1-常见定位方案" class="headerlink" title="1.常见定位方案"></a>1.常见定位方案</h3><p>有三种:</p>
 <ul>
 <li>普通流 (normal flow): 元素按HTML文档中的位置自上而下布局。</li>
 <li>浮动 (float)：先按照普通流，然后根据浮动方向偏移脱离普通流。</li>
 <li>绝对定位 (absolute positioning)：整体脱离普通流，不影响兄弟元素，位置由坐标绝地。</li>
 </ul>
-<h4 id="2-BFC-概念"><a href="#2-BFC-概念" class="headerlink" title="2.BFC 概念"></a>2.BFC 概念</h4><p>Block Formatting context(块级格式上下文) 是 W3C 规范中的一个概念。它是页面中的一块渲染区域，并且有一套渲染规则，它决定子元素如何定位，它和其他元素的关系和相互作用。它属于上述定位方案的普通流。BFC元素可理解为一个封闭的盒子，内部的元素无论怎么变，都不会影响到外部。</p>
-<h4 id="3-BFC-触发"><a href="#3-BFC-触发" class="headerlink" title="3.BFC 触发"></a>3.BFC 触发</h4><p>只要符合一条件就触发：(body，float, position, display, overflow)</p>
+<h3 id="2-BFC-概念"><a href="#2-BFC-概念" class="headerlink" title="2.BFC 概念"></a>2.BFC 概念</h3><p>Block Formatting context(块级格式上下文) 是 W3C 规范中的一个概念。它是页面中的一块渲染区域，并且有一套渲染规则，它决定子元素如何定位，它和其他元素的关系和相互作用。它属于上述定位方案的普通流。BFC元素可理解为一个封闭的盒子，内部的元素无论怎么变，都不会影响到外部。</p>
+<h3 id="3-BFC-触发"><a href="#3-BFC-触发" class="headerlink" title="3.BFC 触发"></a>3.BFC 触发</h3><p>只要符合一条件就触发：(body，float, position, display, overflow)</p>
 <ul>
 <li>根元素或其它包含它的元素</li>
 <li>浮动 (元素 float 不为 none)</li>
@@ -404,7 +404,7 @@
 <li>被声明为块级的元素 overflow 不为 visible</li>
 <li>弹性盒 flex boxes (元素 display: flex 或 inline-flex)</li>
 </ul>
-<h4 id="4-BFC-作用"><a href="#4-BFC-作用" class="headerlink" title="4.BFC 作用"></a>4.BFC 作用</h4><ol>
+<h3 id="4-BFC-作用"><a href="#4-BFC-作用" class="headerlink" title="4.BFC 作用"></a>4.BFC 作用</h3><ol>
 <li>垂直margin合并</li>
 </ol>
 <p>相邻的两个盒子的外边距折叠：</p>
@@ -611,7 +611,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-4"><a class="nav-link" href="#1-常见定位方案"><span class="nav-number">1.</span> <span class="nav-text">1.常见定位方案</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#2-BFC-概念"><span class="nav-number">2.</span> <span class="nav-text">2.BFC 概念</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#3-BFC-触发"><span class="nav-number">3.</span> <span class="nav-text">3.BFC 触发</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#4-BFC-作用"><span class="nav-number">4.</span> <span class="nav-text">4.BFC 作用</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#1-常见定位方案"><span class="nav-number">1.</span> <span class="nav-text">1.常见定位方案</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-BFC-概念"><span class="nav-number">2.</span> <span class="nav-text">2.BFC 概念</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3-BFC-触发"><span class="nav-number">3.</span> <span class="nav-text">3.BFC 触发</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#4-BFC-作用"><span class="nav-number">4.</span> <span class="nav-text">4.BFC 作用</span></a></li></ol></div>
             
 
           </div>
