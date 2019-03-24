@@ -82,14 +82,14 @@
 <meta name="description" content="1.常见定位方案有三种:  普通流 (normal flow): 元素按HTML文档中的位置自上而下布局。 浮动 (float)：先按照普通流，然后根据浮动方向偏移脱离普通流。 绝对定位 (absolute positioning)：整体脱离普通流，不影响兄弟元素，位置由坐标绝地。  2.BFC 概念Block Formatting context(块级格式上下文) 是 W3C 规范中的一个概念。">
 <meta name="keywords" content="CSS">
 <meta property="og:type" content="article">
-<meta property="og:title" content="CSS的BFC原理">
+<meta property="og:title" content="CSS 的 BFC 原理">
 <meta property="og:url" content="http://duqingbin.com/posts/151addc3.html">
 <meta property="og:site_name" content="Jack&#39;s Tech Blog">
 <meta property="og:description" content="1.常见定位方案有三种:  普通流 (normal flow): 元素按HTML文档中的位置自上而下布局。 浮动 (float)：先按照普通流，然后根据浮动方向偏移脱离普通流。 绝对定位 (absolute positioning)：整体脱离普通流，不影响兄弟元素，位置由坐标绝地。  2.BFC 概念Block Formatting context(块级格式上下文) 是 W3C 规范中的一个概念。">
 <meta property="og:locale" content="en">
-<meta property="og:updated_time" content="2019-01-29T02:21:05.003Z">
+<meta property="og:updated_time" content="2019-03-24T03:25:36.133Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="CSS的BFC原理">
+<meta name="twitter:title" content="CSS 的 BFC 原理">
 <meta name="twitter:description" content="1.常见定位方案有三种:  普通流 (normal flow): 元素按HTML文档中的位置自上而下布局。 浮动 (float)：先按照普通流，然后根据浮动方向偏移脱离普通流。 绝对定位 (absolute positioning)：整体脱离普通流，不影响兄弟元素，位置由坐标绝地。  2.BFC 概念Block Formatting context(块级格式上下文) 是 W3C 规范中的一个概念。">
 
 
@@ -126,7 +126,7 @@
 
 
 
-  <title>CSS的BFC原理 | Jack's Tech Blog</title>
+  <title>CSS 的 BFC 原理 | Jack's Tech Blog</title>
   
 
 
@@ -207,16 +207,6 @@
               <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
             
             Archives
-          </a>
-        </li>
-      
-        
-        <li class="menu-item menu-item-categories">
-          <a href="/categories/" rel="section">
-            
-              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
-            
-            Categories
           </a>
         </li>
       
@@ -314,7 +304,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">CSS的BFC原理</h1>
+          <h1 class="post-title" itemprop="name headline">CSS 的 BFC 原理</h1>
         
 
         <div class="post-meta">
@@ -422,7 +412,7 @@
 </ol>
 <p>阻止元素被浮动元素覆盖（第二个元素中加入 overflow: hidden）。左边的宽度固定，右边的内容自适应宽度。</p>
 <p>BFC内部的元素和外部的元素绝对不会互相影响，因此，当BFC外部存在浮动时，它不应该影响BFC内部Box的布局，BFC会通过变窄，而不与浮动有重叠。同样的，当BFC内部有浮动时，为了不影响外部元素的布局，BFC计算高度时会包括浮动的高度。避免margin重叠也是这样的一个道理。</p>
-<p>参考：<br><a href="https://www.w3.org/html/ig/zh/wiki/CSS2/visuren#block-formatting" target="_blank" rel="noopener">https://www.w3.org/html/ig/zh/wiki/CSS2/visuren#block-formatting</a><br><a href="https://developer.mozilla.org/zh-CN/docs/Web/Guide/CSS/Block_formatting_context" target="_blank" rel="noopener">https://developer.mozilla.org/zh-CN/docs/Web/Guide/CSS/Block_formatting_context</a></p>
+<p>Reference：<br><a href="https://www.w3.org/html/ig/zh/wiki/CSS2/visuren#block-formatting" target="_blank" rel="noopener">https://www.w3.org/html/ig/zh/wiki/CSS2/visuren#block-formatting</a><br><a href="https://developer.mozilla.org/zh-CN/docs/Web/Guide/CSS/Block_formatting_context" target="_blank" rel="noopener">https://developer.mozilla.org/zh-CN/docs/Web/Guide/CSS/Block_formatting_context</a></p>
 
       
     </div>
@@ -453,8 +443,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/posts/791d8db1.html" rel="next" title="Flexbox布局">
-                <i class="fa fa-chevron-left"></i> Flexbox布局
+              <a href="/posts/791d8db1.html" rel="next" title="Flexbox 布局">
+                <i class="fa fa-chevron-left"></i> Flexbox 布局
               </a>
             
           </div>
@@ -463,8 +453,8 @@
 
           <div class="post-nav-prev post-nav-item">
             
-              <a href="/posts/7b7d69d8.html" rel="prev" title="CORS跨域">
-                CORS跨域 <i class="fa fa-chevron-right"></i>
+              <a href="/posts/7b7d69d8.html" rel="prev" title="CORS 跨域">
+                CORS 跨域 <i class="fa fa-chevron-right"></i>
               </a>
             
           </div>
@@ -546,7 +536,7 @@
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">21</span>
+                  <span class="site-state-item-count">28</span>
                   <span class="site-state-item-name">posts</span>
                 </a>
               </div>
@@ -557,7 +547,7 @@
               
               <div class="site-state-item site-state-categories">
                 <a href="/categories/index.html">
-                  <span class="site-state-item-count">4</span>
+                  <span class="site-state-item-count">5</span>
                   <span class="site-state-item-name">categories</span>
                 </a>
               </div>
@@ -568,7 +558,7 @@
               
               <div class="site-state-item site-state-tags">
                 <a href="/tags/index.html">
-                  <span class="site-state-item-count">15</span>
+                  <span class="site-state-item-count">16</span>
                   <span class="site-state-item-name">tags</span>
                 </a>
               </div>

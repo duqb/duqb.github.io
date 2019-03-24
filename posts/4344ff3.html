@@ -82,14 +82,14 @@
 <meta name="description" content="1.前言React 的 diff 算法作为 Virtual DOM 的加速器，其算法上的改进优化是 React 整个界面渲染的基础，以及性能提高的保障，同时也是 React 源码中最神秘、最不可思议的部分，本文从源码入手，深入剖析 React diff 的不可思议之处. 2.传统 diff 算法传统 diff 算法的复杂度为 O(n^3)，显然这是无法满足性能要求的。React 通过制定大胆的策略">
 <meta name="keywords" content="JavaScript,React">
 <meta property="og:type" content="article">
-<meta property="og:title" content="React的diff算法">
+<meta property="og:title" content="React diff 算法">
 <meta property="og:url" content="http://duqingbin.com/posts/4344ff3.html">
 <meta property="og:site_name" content="Jack&#39;s Tech Blog">
 <meta property="og:description" content="1.前言React 的 diff 算法作为 Virtual DOM 的加速器，其算法上的改进优化是 React 整个界面渲染的基础，以及性能提高的保障，同时也是 React 源码中最神秘、最不可思议的部分，本文从源码入手，深入剖析 React diff 的不可思议之处. 2.传统 diff 算法传统 diff 算法的复杂度为 O(n^3)，显然这是无法满足性能要求的。React 通过制定大胆的策略">
 <meta property="og:locale" content="en">
-<meta property="og:updated_time" content="2019-01-29T02:38:10.670Z">
+<meta property="og:updated_time" content="2019-03-24T03:26:55.237Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="React的diff算法">
+<meta name="twitter:title" content="React diff 算法">
 <meta name="twitter:description" content="1.前言React 的 diff 算法作为 Virtual DOM 的加速器，其算法上的改进优化是 React 整个界面渲染的基础，以及性能提高的保障，同时也是 React 源码中最神秘、最不可思议的部分，本文从源码入手，深入剖析 React diff 的不可思议之处. 2.传统 diff 算法传统 diff 算法的复杂度为 O(n^3)，显然这是无法满足性能要求的。React 通过制定大胆的策略">
 
 
@@ -126,7 +126,7 @@
 
 
 
-  <title>React的diff算法 | Jack's Tech Blog</title>
+  <title>React diff 算法 | Jack's Tech Blog</title>
   
 
 
@@ -207,16 +207,6 @@
               <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
             
             Archives
-          </a>
-        </li>
-      
-        
-        <li class="menu-item menu-item-categories">
-          <a href="/categories/" rel="section">
-            
-              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
-            
-            Categories
           </a>
         </li>
       
@@ -314,7 +304,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">React的diff算法</h1>
+          <h1 class="post-title" itemprop="name headline">React diff 算法</h1>
         
 
         <div class="post-meta">
@@ -424,7 +414,7 @@
 <li>建议，在开发组件时，保持稳定的 DOM 结构会有助于性能的提升；</li>
 <li>建议，在开发过程中，尽量减少类似将最后一个节点移动到列表首部的操作，当节点数量过大或更新操作过于频繁时，在一定程度上会影响 React 的渲染性能。</li>
 </ol>
-<p>参考：<br><a href="https://zhuanlan.zhihu.com/p/20346379" target="_blank" rel="noopener">https://zhuanlan.zhihu.com/p/20346379</a><br><a href="https://calendar.perfplanet.com/2013/diff/" target="_blank" rel="noopener">https://calendar.perfplanet.com/2013/diff/</a><br><a href="https://grfia.dlsi.ua.es/ml/algorithms/references/editsurvey_bille.pdf" target="_blank" rel="noopener">https://grfia.dlsi.ua.es/ml/algorithms/references/editsurvey_bille.pdf</a><br><a href="https://reactjs.org/docs/reconciliation.html" target="_blank" rel="noopener">https://reactjs.org/docs/reconciliation.html</a><br><a href="https://github.com/livoras/blog/issues/13" target="_blank" rel="noopener">https://github.com/livoras/blog/issues/13</a></p>
+<p>Reference：<br><a href="https://zhuanlan.zhihu.com/p/20346379" target="_blank" rel="noopener">https://zhuanlan.zhihu.com/p/20346379</a><br><a href="https://calendar.perfplanet.com/2013/diff/" target="_blank" rel="noopener">https://calendar.perfplanet.com/2013/diff/</a><br><a href="https://grfia.dlsi.ua.es/ml/algorithms/references/editsurvey_bille.pdf" target="_blank" rel="noopener">https://grfia.dlsi.ua.es/ml/algorithms/references/editsurvey_bille.pdf</a><br><a href="https://reactjs.org/docs/reconciliation.html" target="_blank" rel="noopener">https://reactjs.org/docs/reconciliation.html</a><br><a href="https://github.com/livoras/blog/issues/13" target="_blank" rel="noopener">https://github.com/livoras/blog/issues/13</a></p>
 
       
     </div>
@@ -457,8 +447,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/posts/a7c707e6.html" rel="next" title="Hexo中遇到的问题">
-                <i class="fa fa-chevron-left"></i> Hexo中遇到的问题
+              <a href="/posts/a7c707e6.html" rel="next" title="Hexo 中遇到的问题">
+                <i class="fa fa-chevron-left"></i> Hexo 中遇到的问题
               </a>
             
           </div>
@@ -467,8 +457,8 @@
 
           <div class="post-nav-prev post-nav-item">
             
-              <a href="/posts/f0cde75.html" rel="prev" title="比特币白皮书(多语言版本)">
-                比特币白皮书(多语言版本) <i class="fa fa-chevron-right"></i>
+              <a href="/posts/fa0f8e99.html" rel="prev" title="JavaScript 模块加载的相关规范">
+                JavaScript 模块加载的相关规范 <i class="fa fa-chevron-right"></i>
               </a>
             
           </div>
@@ -550,7 +540,7 @@
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">21</span>
+                  <span class="site-state-item-count">28</span>
                   <span class="site-state-item-name">posts</span>
                 </a>
               </div>
@@ -561,7 +551,7 @@
               
               <div class="site-state-item site-state-categories">
                 <a href="/categories/index.html">
-                  <span class="site-state-item-count">4</span>
+                  <span class="site-state-item-count">5</span>
                   <span class="site-state-item-name">categories</span>
                 </a>
               </div>
@@ -572,7 +562,7 @@
               
               <div class="site-state-item site-state-tags">
                 <a href="/tags/index.html">
-                  <span class="site-state-item-count">15</span>
+                  <span class="site-state-item-count">16</span>
                   <span class="site-state-item-name">tags</span>
                 </a>
               </div>
